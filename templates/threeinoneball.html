@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from cashin1.com/threeinoneball.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Aug 2022 10:50:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ <title>3in1 Ball | Online Gamble Platform. </title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ {% include "games_header.html" %}
+ <style>
+  .centertext {
+    position: absolute;
+    top: 38%;
+    left: 20%;
+    font-size:30px;
+    font-weight:600;
+     transform: translate(2%, -1%); 
+     z-index:2;
+  }
+</style>
+<div style="margin:0 auto;min-height: 609px;background: linear-gradient(#554994,#F675AB,#F29393,#FFCCB3) !important; overflow: hidden;padding-right: 5px;padding-left: 5px;border: 5px solid #ff0080;">
+    <br>
+    <div class="container-fluid" >
+      <h1 style="color:red !important" id ="result"></h1>
+    </div>
+  <div id="coin">
+    <div class="side-a tail">
+      <div id = "toss_value" class="coin centertext "></div>
+      <img class="coin" style="width: 100%;height: 100% ; display:none;" id ="" src="/static/images/only_coin.png">
+      <img style="width: 100%;height: 100%; "  class="ludo_png" src="/static/all/threeinoneball.png">
+      <img style="width:100% ;height:100%; display:none;" class="ludo_gif" src ="/static/images/3ball_swing.gif">
+    </div>
+  </div>
+  <div id="error">
+  </div>
+  <br>
+  <div style="width:100%;display: block;overflow: hidden;">
+    <div  class="btn-top">
+      <p>Select A Option <span>Rate: 1.80</span></p>
+    </div>
+
+    <div style="padding: 5px;background: linear-gradient(#e080ff,#40E0D0,#6495ED,#CCF,#eE3163) !important;border-radius: 5px;position: relative;bottom: 0;overflow: hidden;">
+      <button class="btn d3" id="btn-football"><div class="d31">Football</div></button>
+      <button class="btn d3" id="btn-cricket"><div class="d31">Cricket</div></button>
+      <button class="btn d3" id="btn-tennis"><div class="d31">Tennis</div></button>
+    </div>
+    <div style="width:100%;float:left;">
+      <div style="width:40%;float:left;">
+        <input type="number" class="form-control form-custom" name="threeinoneball_amount" id="threeinoneball_amount" placeholder=" Enter Amount">
+      </div>
+      <div style="width:60%;float:right;">
+        <div  class="posiblewin" id="posiblewin">
+          <span>Possible Winning</span><span class='bg' id="pwin">0.00</span>
+        </div>
+      </div>
+    </div>
+    <div class="play-btn">
+      {% if user.is_authenticated %}
+      <img id="play" class="" src="/static/images/play-btn.png" alt="">
+      {% else %}
+      <img id="play1" class="" src="/static/images/play-btn.png" alt="">
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  
+  jQuery(document).ready(function($){
+    var addedclass="";
+    var flipResult="";
+    var result="";
+    var amount="";
+    var stake="";
+    var run=0;
+    $('#btn-football').click(function(event) {
+      if(run==0)
+      {
+
+       stake="1";
+       $('#btn-football').addClass('active');
+       $('#btn-cricket').removeClass('active');
+       $('#btn-tennis').removeClass('active');
+     }
+   });
+
+    $('#btn-cricket').click(function(event) {
+      if(run==0)
+      {
+
+       stake="2";
+       $('#btn-football').removeClass('active');
+       $('#btn-cricket').addClass('active');
+       $('#btn-tennis').removeClass('active');
+     }
+     else
+     {
+
+     }
+   });
+
+    $('#btn-tennis').click(function(event) {
+      if(run==0)
+      {
+
+       stake="3";
+       $('#btn-football').removeClass('active');
+       $('#btn-cricket').removeClass('active');
+       $('#btn-tennis').addClass('active');
+     }
+     else
+     {
+
+     }
+   });
+    $('#play1').on('click', function(){
+     // alert('Refresh your browser');
+    //  location.reload();
+    $('#error').html("login first!!")
+    $('#error').addClass("alert alert-danger")
+    });
+    $('#play').on('click', function(){
+      run=0;
+
+      $('#btn-cricket').css('background', '#123');
+      $('#btn-football').css('background', '#123');
+      $('#btn-tennis').css('background', '#123');
+      var amount=$('#threeinoneball_amount').val();
+      if(stake=="" )
+      {
+        alert('Choose A Option(Football-Cricket-Tennis)');
+        run=0;
+      }
+      else
+      {
+        if(amount<=0)
+        {
+          alert('Enter Stake amount');
+          run=0;
+        }
+        else
+        {
+          $('.ludo_gif').css('display','block')
+          $('.ludo_png').css('display','none')
+          $.ajax({
+            method: "POST",
+            url:'/game5/',
+            data : {
+             stake: stake,
+             amount: amount
+           },
+           success : function (data){
+            $('.ludo_gif').css('display','none')
+           $('#result').html(data.result) ;
+           $('#toss_value').html(data.toss_result);
+           $('#error').html(data.error)
+           //$('#error').addClass("alert alert-danger")
+           $('.coin').css('display','block');
+           setTimeout(function(){
+            document.location.reload(true);
+           }, 5000);
+          }
+        ,
+        error : function (data){
+          $('.ludo_gif').css('display','none')
+          $('.ludo_png').css('display','block')
+          alert('something went wrong , please play again')
+         },
+
+        }); 
+        }
+      }
+    });
+        $('#threeinoneball_amount').keyup(function(event) {
+      var rate=1.80;
+      var amount=$('#threeinoneball_amount').val();
+      var returna=amount*rate;
+      var returna=returna.toFixed(1); 
+      $('#pwin').html(returna);
+    });
+  });
+
+
+</script>
+</body>
+
+<!-- Mirrored from cashin1.com/threeinoneball.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Aug 2022 10:50:37 GMT -->
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ <title> Odd/Even | Online Gamble Platform.</title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% include "games_header.html" %}
+<style>
+  .centertext {
+    position: absolute;
+    top: 38%;
+    left: 20%;
+    font-size:45px;
+    font-weight:600;
+     transform: translate(15%, -5%); 
+     z-index:2;
+  }
+</style>
+<div style="margin:0 auto;min-height: 609px;background: linear-gradient( #0099f7,#6495ED, #f11712) !important; overflow: hidden;padding-right: 5px;padding-left: 5px;border: 5px solid #ff0080;">
+<br>
+<div class="container-fluid" >
+  <h1 style="color:red !important" id ="result"></h1>
+</div>
+  <div id="coin">
+    
+    <div class="side-a tail">
+      <div id = "toss_value" class="coin centertext "></div>
+      <img class="coin" style="width: 100%;height: 100% ; display:none" id ="" src="/static/images/only_coin.png">
+      <img style="width: 100%;height: 100%;" class="ludo_png" src="/static/images/ludu/odd-even.png">
+      <img class="ludo_gif" style="width: 100%;height: 100%; display:none" id ="gif" src="/static/images/ludo.gif">
+    </div>
+  </div>
+  <div id="error">
+  </div>
+  <br>
+  <div style="width:100%;display: block;overflow: hidden;">
+  <div  class="btn-top" style="background:#fffb00e7;border-radius: 5px;">
+    <p>Select A Option<span>Rate: 1.80</span>
+  </div>
+
+
+    <div style="padding: 5px 10px;background: linear-gradient(#e080ff,#40E0D0,#6495ED,#CCF,#eE3163) !important;border-radius: 5px;">
+      <button class="btn d3" id="btn-odd" style="width: 49%;"><div class="d31">ODD</div></button>
+      <button class="btn d3" id="btn-even" style="width: 49%;"><div class="d31">EVEN</div></button>
+    </div>
+    
+    <div style="width:100%;float:left;">
+      <div style="width:40%;float:left;">
+        <input type="number" class="form-control form-custom" name="ludu_amount" id="ludu_amount" placeholder=" Enter Amount">
+      </div>
+      <div style="width:60%;float:right;">
+        <div  class="posiblewin" id="posiblewin">
+          <span>Winning Rate</span><span class="bg" id="pwin" style="color: #fff000;">0.00</span>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+        <div class="amountBtn-grp" >
+      <span class="amountBtn" style="background: linear-gradient(#000650,#000650,#5A5D84,#000650,#000650) !important;color: #ffffff;padding: 5px 7px; cursor: pointer;">100</span>
+      <span class="amountBtn" style="background: linear-gradient(#000650,#000650,#5A5D84,#000650,#000650) !important;color: #ffffff;padding: 5px 7px; cursor: pointer;">500</span>
+      <span class="amountBtn" style="background: linear-gradient(#000650,#000650,#5A5D84,#000650,#000650) !important;color: #ffffff;padding: 5px 7px; cursor: pointer;">1000</span>
+      <span class="amountBtn" style="background: linear-gradient(#000650,#000650,#5A5D84,#000650,#000650) !important;color: #ffffff;padding: 5px 7px; cursor: pointer;">3000</span>
+      <span class="amountBtn" style="background: linear-gradient(#000650,#000650,#5A5D84,#000650,#000650) !important;color: #ffffff;padding: 5px 7px; cursor: pointer;">5000</span>
+      <span class="amountBtn" style="background: linear-gradient(#000650,#000650,#5A5D84,#000650,#000650) !important;color: #ffffff;padding: 5px 7px; cursor: pointer;">8000</span>
+      <span class="amountBtn" style="background: linear-gradient(#000650,#000650,#5A5D84,#000650,#000650) !important;color: #ffffff;padding: 5px 7px; cursor: pointer;">10000</span>
+    </div>
+    <br>
+    <div class="play-btn">
+      {% if user.is_authenticated %}
+      <img id="playodd" class="" src="/static/images/play-btn.png" alt="">
+      {% else %}
+      <img id="play1" class="" src="/static/images/play-btn.png" alt="">
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  {% comment %} setTimeout(function(){
+    document.getElementById('aap').className = 'waa';
+  }, 5000); {% endcomment %}
+  jQuery(document).ready(function($){
+    var addedclass="";
+    var flipResult="";
+    var result="";
+    var amount="";
+    var stake="";
+    var run=0;
+    $('#btn-odd').click(function(event) {
+      if(run==0)
+      {
+       stake="odd";
+       $('#btn-odd').addClass('active');
+       $('#btn-even').removeClass('active');
+     }
+   });
+
+    $('#btn-even').click(function(event) {
+      if(run==0)
+      {
+       stake="even";
+       $('#btn-odd').removeClass('active');
+       $('#btn-even').addClass('active');
+     }
+     else
+     {
+
+     }
+   });
+    $('#play1').on('click', function(){
+      alert('Refresh your browser');
+      location.reload();
+    });
+    $('#playodd').on('click', function(){
+      run=0;
+
+      // $('#btn-tail').css('background', '#123');
+      // $('#btn-head').css('background', '#123');
+      var amount=$('#ludu_amount').val();
+      if(stake=="" )
+      {
+        alert('choose your point (odd-even)');
+        run=0;
+      }
+      else
+      {
+        if(amount<=0)
+        {
+          alert('Enter Stake amount');
+          run=0;
+        }
+        else
+        {
+          $('.ludo_gif').css('display','block')
+          $('.ludo_png').css('display','none')
+          $.ajax({
+            method: "POST",
+            url:'/game3/',
+            data : {
+            stake: stake,
+            amount: amount
+           },
+           success : function (data){
+           // var respData = JSON.parse(a);
+           // $('#coin').html(respData.wstatues);
+          //  $('#result').html(respData.b);
+           // $('#notice').html(respData.c);
+           // $('#posiblewin').html(respData.d);
+           // $('#error').html(respData.error);
+           $('.ludo_gif').css('display','none')
+           $('#result').html(data.result) ;
+           $('#toss_value').html(data.toss_result);
+           $('#error').html(data.error)
+           $('.coin').css('display','block');
+          
+           setTimeout(function(){
+            document.location.reload(true);
+           }, 5000);
+        },
+         error : function (a){
+          $('.ludo_gif').css('display','none')
+          $('.ludo_png').css('display','block')
+          alert('something went wrong , please play again')
+         },
+        }); 
+        }
+      }
+    });
+        $('.amountBtn').click(function () {
+      $('.amountBtn').removeClass('btn-active');
+      $(this).addClass('btn-active');
+      var amount = $(this).text();
+      $('#ludu_amount').val(amount).trigger('change')
+    })
+    $("#ludu_amount").on("change keypress input", function() {
+      var rate=1.80;
+      var amount=$('#ludu_amount').val();
+      var returna=amount*rate;
+      var returna=returna.toFixed(1); 
+      $('#pwin').html(returna);
+    });
+
+  });
+
+
+</script></body>
+
+
+</html>

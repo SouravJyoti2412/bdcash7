@@ -1,0 +1,324 @@
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+<div id="deposit" class="modal fade" role="dialog">
+    <div class="modal-dialog  ">
+      <div class="modal-content">
+        <div class="modal-header m-head mh-color" style="  background: #ff0606 !important;">
+          <button onClick="window.location.reload();" type="button" class="close" data-dismiss="modal" style="color: #ffffff">×</button>
+          {% for i in logo %}
+          <h4 class="modal-title" style="color: #D2D2D2"> <img style="width: 85px;height: 32px;margin-left: 10px;" src="/media/{{i.logo}}"> &nbsp; Request a deposit</h4>
+           {% endfor %}
+        </div>
+        <div class="modal-body" style="padding: 2% !important">
+          {% comment %} <div class=""> {% endcomment %}
+            <div role="form" class="register-form">
+            {% comment %} <form method="post" action="{% url 'deposite_money' %}"> {% endcomment %}
+              {% csrf_token %}
+            <div  class="register-form">
+              <div id="status_data"  >
+              </div>
+              <hr class="colorgraph">
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <label style="text-align: left;width: 100%;">Method<span style="color:#DD4F43;">*</span></label>
+                    <select class="form-control" id="sel1" name="payment_method" onChange="check();" required ="">
+                      <option disabled selected name ="method"  >Select Method</option>
+                      <option value="BKS 01408557179">Bkash Personal</option>
+                      <option value="NGD 01408557179">Nagad Parsonal</option>
+                      <option value="RKT 01408557179">Rocket Parsonal</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <label style="text-align: left;width: 100%;">To <span style="color:#DD4F43;">*</span></label>
+                    <input type="text" class="form-control bg-light-gray" value="" id="req-deposit-to" name="to_admin" placeholder="To Admin account"  required="" disabled="">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <label style="text-align: left;width: 100%;">Amount <span style="color:#DD4F43;">*</span></label>
+                    <input type="number" id="req-deposit-amount" name="amount" placeholder="Amount" class="form-control input-lg" required="" tabindex="1">
+                   <span class="text-danger" id ="error_amount"></span>
+                   
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                  <label style="text-align: left;width: 100%;">From <span style="color:#DD4F43;">*</span></label>
+                  <div class="form-group">
+                    
+                    <input type="text" id="req-deposit-from"  name="from_user" class="form-control input-lg" placeholder="Enter your username" tabindex="1">
+                    <span class="text-danger" id ="error_lname"></span>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  
+                  <label style="text-align: left;width: 100%;">Transaction Number<span style="color:#DD4F43;">*</span></label>
+                  <div class="form-group">
+                    <input type="text" name="transection_number" id="req-deposit-transaction_number" required class="form-control input-lg" placeholder="Transaction Number" tabindex="1">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                   <a onClick="depositPost();" id ="deposite_money" style="background: #126e51 !important; color: #000;" type="button" class="btn  btn-block btn-lg mh-color" tabindex="7">Submit
+                  </a> 
+                  {% comment %} <button type="submit" id="deposit"  name="deposite"  class="btn btn-success btn-lg btn-block mh-color">Deposite Now</button> {% endcomment %}
+                </div>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    function check() {
+      document.getElementById("req-deposit-to").value=document.getElementById("sel1").value;
+    } 
+    function depositPost() {
+      var amount=document.getElementById("req-deposit-amount").value;
+      var sellist1=document.getElementById("sel1").value;
+      var from=document.getElementById("req-deposit-from").value;
+      var to=document.getElementById("req-deposit-to").value;
+      var transection_number=document.getElementById("req-deposit-transaction_number").value;
+      $.ajax({
+        url : "/deposite/",
+        type : "post",
+        //dataType:"text",
+        data : {
+         transection_number: transection_number,
+         sellist1: sellist1,
+         from: from,
+         to: to,
+         amount: amount
+       },
+       success : function (data){
+        //var respData2 = JSON.parse(a);
+        
+        successmessage =data.amount+" "+data.result ;
+        $('#status_data').addClass("alert alert-success");
+        $('#deposite_money').attr('disabled',true);
+        $('#status_data').html(successmessage);
+        $('#requestDepositModal').modal('show');
+      },
+      error : function(data){
+      alert('something wong happend , please send request')
+      }
+    });
+    } 
+    
+
+
+
+
+  </script>
+
+  <script>
+    $(document).ready(function(){
+    
+      $("#req-deposit-amount").focusout(function(){
+            $amount =$("#req-deposit-amount").val();
+        if($(this).val()==''){
+            $(this).css("border-color", "#FF0000");
+              $('#deposite_money').attr('disabled',true);
+               $("#error_amount").text("* you have to fill amount");
+          }
+          else if (($amount < 300) || ($amount  > 25000 ))
+          {   
+              $(this).css("border-color", "#FF0000");
+              $('#deposite_money').attr('disabled',true);
+              $("#error_amount").text("*minimum amount should be 300 to 25000");
+          }
+            else
+          {
+            $(this).css("border-color", "#2eb82e");
+            $('#deposite_money').attr('disabled',false);
+            $("#error_amount").text("");
+  
+          }
+       });
+       $("#req-deposit-from").focusout(function(){
+        $name =$("#req-deposit-from").val();
+        if($name ==''){
+            $(this).css("border-color", "#FF0000");
+            $('#deposite_money').attr('disabled',true);
+            $("#error_lname").text("* You have to fill last name!");
+            }
+      else if (($name.length < 4) || ($name.length > 25 ))
+      {   
+          $(this).css("border-color", "#FF0000");
+          $('#deposite_money').attr('disabled',true);
+          $("#error_lname").text("*Lenght should Be 4 to 25");
+      }
+        else
+      {
+        $(this).css("border-color", "#2eb82e");
+        $('#eposite_money').attr('disabled',false);
+        $("#error_lname").text("");
+  
+      }
+   });
+        $("#userId").focusout(function(){
+            $lname =$("#userId").val();
+        if($(this).val()==''){
+            $(this).css("border-color", "#FF0000");
+              $('#userSignUp').attr('disabled',true);
+              $("#userIdError").text("* You have to fill User id!");
+          }
+            else if (($lname.length < 4) || ($lname.length > 10 ))
+          {   
+              $(this).css("border-color", "#FF0000");
+              $('#userSignUp').attr('disabled',true);
+              $("#userIdError").text("*Lenght Should Be 4 to 10");
+          }
+          else
+          {
+            $(this).css("border-color", "#2eb82e");
+            $('#userSignUp').attr('disabled',false);
+            $("#userIdError").text("");
+          }
+       });
+       $("#email").focusout(function(){
+        if($(this).val()==''){
+            $(this).css("border-color", "#FF0000");
+                $('#userSignUp').attr('disabled',true);
+                 $("#error_emailcheck").text("* You have to enter your email!");
+        }
+       
+        else
+        {
+            $(this).css("border-color", "#2eb82e");
+            $('#submit').attr('disabled',false);
+            $("#error_emailcheck").text("");
+  
+        }
+   });
+        
+        $("#mobileNumber").focusout(function(){
+            
+            $pho =$("#mobileNumber").val();
+        if($(this).val()==''){
+            $(this).css("border-color", "#FF0000");
+              $('#userSignUp').attr('disabled',true);
+              $("#mobileError").text("* You have to enter Phone Number!");
+          }
+            
+          else if ($pho.length!=10)
+          {   
+                    $(this).css("border-color", "#FF0000");
+              $('#userSignUp').attr('disabled',true);
+              $("#mobileError").text("* Lenght of Number Should Be Ten");
+          }
+          else{
+            $(this).css({"border-color":"#2eb82e"});
+            $('#userSignUp').attr('disabled',false);
+            $("#mobileError").text("");
+          }
+  
+      });
+        $("#pass").focusout(function(){
+        
+            $pass =$("#pass").val();
+        if($(this).val()==''){
+            $(this).css("border-color", "#FF0000");
+              $('#userSignUp').attr('disabled',true);
+              $("#error_pass").text("* enter password!");
+          }
+           
+          else if ($pass.length < 7 )
+          {   
+              $(this).css("border-color", "#FF0000");
+              $('#userSignUp').attr('disabled',true);
+              $("#error_pass").text("* Lenght of password should be minimum 8 charecter");
+          }
+          
+           
+            
+          else{
+            $(this).css({"border-color":"#2eb82e"});
+            $('#userSignUp').attr('disabled',false);
+            $("#error_pass").text("");
+          }
+  
+      });
+        $("#cpass").focusout(function(){
+            
+            $pass =$("#pass").val();
+            $cpass =$("#cpass").val();
+        if($(this).val()==''){
+            $(this).css("border-color", "#FF0000");
+              $('#userSignUp').attr('disabled',true);
+              $("#error_cpass").text("* enter confirm password!");
+          }
+            else if ($pass != $cpass)
+            {   
+                $(this).css("border-color", "#FF0000");
+                $('#userSignUp').attr('disabled',true);
+                $("#error_cpass").text("* password not matched");
+        }
+            else{
+            $(this).css({"border-color":"#2eb82e"});
+            $('#userSignUp').attr('disabled',false);
+            $("#error_cpass").text("");
+          }
+         });
+       $( "#userSignUp" ).click(function() {
+         if($("#name" ).val()=='')
+         {
+            $("#name").css("border-color", "#FF0000");
+              $('#userSignUp').attr('disabled',true);
+               $("#error_name").text("* You have to enter your first name!");
+          }if($("#lname" ).val()=='')
+          {
+             $("#lname").css("border-color", "#FF0000");
+               $('#userSignUp').attr('disabled',true);
+                $("#error_lname").text("* You have to enter your last name!");
+           }
+          if($("#userId" ).val()=='')
+         {
+           // $("#lastname").css("border-color", "#FF0000");
+              $('#userSignUp').attr('disabled',true);
+               $("#userIdError").text("* You have to enter your User id!");
+          }
+            if($("#email" ).val()=='')
+            {
+             $("#email").css("border-color", "#FF0000");
+                 $('#submit').attr('disabled',true);
+                  $("#error_emailcheck").text("* You have to enter email!");
+         }
+         
+          if($("#mobileNumber" ).val()=='')
+         {
+            //$("#phone").css("border-color", "#FF0000");
+              $('#userSignUp').attr('disabled',true);
+               $("#mobileError").text("* You have to enter your Phone Number!");
+          }
+      if($("#pass" ).val()=='')
+         {
+            $("#pass").css("border-color", "#FF0000");
+              $('#userSignUp').attr('disabled',true);
+               $("#error_pass").text("* You have to enter your password!");
+          }
+            if($("#cpass" ).val()=='')
+         {
+            $("#cpass").css("border-color", "#FF0000");
+              $('#userSignUp').attr('disabled',true);
+               $("#error_cpass").text("* You have to enter your confirm password!");
+          }
+      
+      
+        
+        
+        
+        });
+  
+            
+      
+  });
+  
+  </script>

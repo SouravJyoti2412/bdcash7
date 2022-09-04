@@ -1,0 +1,561 @@
+.bg-black { /* background-color: transparent !important; */
+ background: url("../../images/sports333/backgorund-min.html") no-repeat center center fixed;
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: 102%;
+}
+.bg-dark {
+ background-color: #2c9ccb !important;
+}
+#registrationModal .bg-dark,
+#loginModal .bg-dark {
+ background-color: #3ea4cf !important;
+}
+#loginRegister {
+ background-color: #ffffff !important;
+}
+#loginRegister .responsive {
+ margin-top: 0;
+ margin-left: 1.75rem;
+}
+#loginRegister #topNavbar {
+ background-color: #ffffff !important;
+ width: 100%;
+}
+#loginRegister #topNavbar .ml-auto {
+ margin-left: 1.75rem !important;
+}
+.text-khet-yellow {
+ color: #a7aad7 !important;
+}
+.navbar {
+ padding: 0;
+}
+div.soft-color,
+.modal-body,
+.modal-footer { /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f0f9ff+0,cbebff+47,a1dbff+100;Blue+3D+%2313 */
+ background: #dbfaf2 !important;
+}
+div.bg-yellow,
+div.bg-yellow:hover,
+button.bg-yellow,
+button.bg-yellow:hover {
+ background: #3ea3cf !important;
+}
+.nav-pills .show > .nav-link {
+ background-color: transparent !important;
+ color: #ffffff !important;
+}
+.nav-pills .nav-link.active {
+ color: #ffffff !important;
+ background: #3ea3cf !important;
+}
+.card {
+ background: linear-gradient(#0080ff,#40E0D0,#6495ED,#CCF,#DE3163) !important;
+}
+.text-yellow {
+ color: #383b7b !important;
+}
+.cream-color {
+ background: #cbbcf6 !important;
+}
+div#news_scroller {
+ background-image: linear-gradient( to right top, #F7F7F7, #f7f7f7, #f7f7f7, #f7f7f7, #f7f7f7 ) !important;
+ margin-top: 10px;
+}
+.nav-pills .nav-link {
+ color: #ffffff;
+ margin-top: 10px;
+}
+.nav-pills .nav-link:first-child {
+ margin-top: 0px;
+}
+.border-left {
+ border-top: 1px dashed #cbbcf6 !important;
+ border-left: 1px dashed #cbbcf6 !important;
+}
+.border-right {
+ border-right: 1px dashed #cbbcf6 !important;
+}
+.border-right-solid {
+ border-right: 1px solid #cccccc !important;
+}
+thead {
+ background: #2c9ccb;
+ color: #ffffff;
+}
+.table td,
+.table th {
+ padding: 0.25rem;
+}
+#v-pills-profile .table td,
+#v-pills-profile .table th {
+ padding: 0.75rem;
+}
+.table thead th {
+ vertical-align: middle;
+}
+.table-hover tbody tr,
+.table-striped tbody tr,
+.table-bordered tbody tr {
+ background-color: #f6f6f6 !important;
+ box-shadow: 0px 0px 20px 0px #dedede !important;
+}
+.table-hover tbody tr:hover,
+.table-striped tbody tr:nth-of-type(odd) {
+ background-color: #eefcff !important;
+}
+.v-select .open-indicator,
+.v-select .open-indicator:before {
+ margin-right: 0px !important;
+}
+.pagination a {
+ margin-right: 10px;
+ border: 1px solid #421b9b;
+ padding: 5px 15px !important;
+}
+.pagination .text-light-white {
+ color: #383b7b !important;
+}
+.pagination {
+ padding-left: 12px !important;
+}
+.pagination a.active {
+ background: #eefcff !important;
+}
+.dropdown-menu-left {
+ background: #ffffff !important;
+ left: -1rem;
+}
+.dropdown-menu-right {
+ background: #ffffff !important;
+}
+.dropdown-divider-dotted {
+ border-top: 1px dashed white !important;
+}
+.has-icon .form-control-feedback {
+ position: absolute;
+ z-index: 2;
+ display: block;
+ width: 2.375rem;
+ line-height: 2.1rem;
+ text-align: center;
+ pointer-events: none;
+}
+.form-control {
+ border: 2px solid #808080 !important;
+ padding: 0.3rem 0.75rem !important;
+ background: #dbfaf2 !important;
+ border-radius: 8px;
+}
+.has-icon .form-control {
+ padding-left: 2rem !important;
+}
+.vs__selected-options .form-control {
+ border: none !important;
+ background: none !important;
+ padding: 0.15rem 0.75rem !important;
+}
+.v-select {
+ background: #e6eff5 !important;
+}
+.red {
+ color: red;
+}
+.header-buttons .btn.register {
+ margin-left: 1rem;
+ color: #ffffff;
+}
+p.text-warning {
+ color: #cbbcf6 !important;
+}
+.badge-dark {
+ color: black !important;
+ background-color: #cbbcf6 !important;
+}
+.modal-content {
+ border: 0;
+ background-color: #f0f9ff;
+}
+.alert-danger {
+ background-color: lightcyan !important;
+ border-color: lightcyan !important;
+}
+.btn-group-lg > .btn,
+.btn-lg {
+ padding: 0.37rem 1rem !important;
+}
+.border-bottom {
+ border-bottom: 1px dashed #cbbcf6 !important;
+}
+#wrapper-container {
+ background: transparent !important;
+}
+.bg-black-real {
+ background: #fff !important;
+ color: black !important;
+}
+.bg-black-real .text-khet-yellow {
+ color: #421b9b !important;
+}
+#registrationModal .form-check-input {
+ margin-top: 0.5rem;
+}
+#registrationModal .form-check-label {
+ font-size: 14px;
+}
+#loginRegister .dropdown {
+ position: relative !important;
+}
+#loginRegister .v-select .dropdown-toggle {
+ border: none;
+}
+#loginRegister .v-select input[type="search"],
+.v-select input[type="search"]:focus {
+ max-width: 100% !important;
+}
+#loginRegister .v-select input[type="search"].form-control {
+ border: none !important;
+}
+#loginRegister .v-select .selected-tag {
+ margin-left: 2rem;
+ position: absolute;
+ z-index: 1;
+}
+#loginRegister .v-select .open-indicator:before {
+ border-style: solid;
+ border-width: 13px 10px 0 5px;
+ content: "";
+ height: 0;
+ vertical-align: top;
+ transform: rotate(231deg);
+ box-sizing: inherit;
+ width: 0;
+ border-color: #3ea3cf transparent transparent transparent !important;
+}
+#loginRegister .v-select.open .open-indicator:before {
+ transform: rotate(411deg);
+}
+.collapseBtn:hover h5 button.btn-link {
+ color: #ffffff !important;
+ text-decoration: none !important;
+}
+.upcomingBtn {
+ background-color: #ffffff !important;
+}
+.upcomingBtn h5 button.btn-link {
+ color: #3ea3cf !important;
+}
+.upcomingBtn:hover h5 button.btn-link {
+ color: #3ea3cf !important;
+ text-decoration: none !important;
+}
+ul.child-li-text-blue li a {
+ color: #2c9ccb !important;
+}
+.text-blue {
+ color: #2c9ccb !important;
+}
+.bg-white-grad {
+ background: #ffffff !important;
+ background: -moz-linear-gradient( top, #ffffff 0%, #f5f5f5 47%, #ededed 100% ) !important;
+ background: -webkit-gradient( left top, left bottom, color-stop(0%, #ffffff), color-stop(47%, #f5f5f5), color-stop(100%, #ededed) ) !important;
+ background: -webkit-linear-gradient( top, #ffffff 0%, #f5f5f5 47%, #ededed 100% ) !important;
+ background: -o-linear-gradient( top, #ffffff 0%, #f5f5f5 47%, #ededed 100% ) !important;
+ background: -ms-linear-gradient( top, #ffffff 0%, #f5f5f5 47%, #ededed 100% ) !important;
+ background: linear-gradient( to bottom, #ffffff 0%, #f5f5f5 47%, #ededed 100% ) !important;
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 ) !important;
+}
+.bg-blue-grad {
+ background: #499bea !important;
+ background: -moz-linear-gradient(top, #499bea 0%, #63bdfc 100%) !important;
+ background: -webkit-gradient( left top, left bottom, color-stop(0%, #499bea), color-stop(100%, #63bdfc) ) !important;
+ background: -webkit-linear-gradient(top, #499bea 0%, #63bdfc 100%) !important;
+ background: -o-linear-gradient(top, #499bea 0%, #63bdfc 100%) !important;
+ background: -ms-linear-gradient(top, #499bea 0%, #63bdfc 100%) !important;
+ background: linear-gradient(to bottom, #499bea 0%, #63bdfc 100%) !important;
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#63bdfc', GradientType=0 ) !important;
+}
+.text-gray {
+ color: #818181 !important;
+}
+.match-count {
+ padding-top: 0.75rem;
+ padding-right: 0.5rem;
+}
+.text-smaller {
+ font-size: 60%;
+ font-weight: 200;
+}
+.odd-sport-row .under-red {
+ padding-top: 8px;
+ padding-bottom: 8px;
+ border: none;
+}
+.row .capitalize > strong {
+ margin-left: 0;
+}
+.collapseBtnAnswers small {
+ font-size: 90%;
+}
+.list-inline-item:nth-child(odd) .bg-white-custom {
+ border-bottom: none !important;
+ border-radius: 10px;
+}
+.list-inline-item:nth-child(even) .bg-white-custom {
+ border-bottom: none !important;
+ border-radius: 10px;
+}
+.collapseBody {
+ margin-bottom: 0;
+}
+.answer-list li:hover div:last-child,
+.answer-list li:focus div:last-child,
+.answer-list li:active div:last-child,
+.answer-list li:visited div:last-child {
+ background-color: #5bbafc !important;
+ border-color: #5bbafc !important;
+ color: #ffffff !important;
+ text-decoration: none !important;
+}
+.plr-15 {
+ padding: 0.8rem 15px !important;
+}
+#betRequestModal .img_icon {
+ width: 30px;
+}
+@media (max-width: 768px) {
+ .navbar-toggler {
+  margin-left: 1.5rem;
+ }
+ .bg-black {
+  background-size: auto;
+ }
+ div#news_scroller {
+  margin-bottom: 10px;
+ }
+ .upcomingBtn {
+  margin-top: 10px;
+  background-color: #ededed !important;
+ }
+ footer {
+  margin-top: 10px;
+ }
+ .table td,
+ .table th {
+  padding: 1.25rem;
+ }
+}
+@media (max-width: 575px) {
+ .collapseBtnMatchTitle .col-xl-1,
+ .collapseBtnMatchTitle .col-lg-1,
+ .collapseBtnMatchTitle .col-md-1,
+ .collapseBtnMatchTitle .col-sm-1,
+ .collapseBtnMatchTitle .col-xs-1 {
+  max-width: 8%;
+ }
+ .collapseBtnMatchTitle .col-xl-2,
+ .collapseBtnMatchTitle .col-lg-2,
+ .collapseBtnMatchTitle .col-md-2,
+ .collapseBtnMatchTitle .col-sm-2,
+ .collapseBtnMatchTitle .col-xs-2 {
+  max-width: 92%;
+ }
+ .width_60 {
+  width: 100% !important;
+ }
+ .d-table-cell {
+  display: initial !important;
+ }
+}
+.header-buttons .btn {
+ width: 44%;
+}
+#userProfile .container,
+#clubProfile .container {
+ width: unset !important;
+ min-height: 550px;
+ max-width: 83.333333%;
+}
+#v-pills-tab {
+ padding: 0 !important;
+ background-color: rgba(0, 0, 0, 0.35);
+}
+#v-pills-tab a span img {
+ width: 25px;
+}
+#v-pills-tab,
+#v-pills-tabContent {
+ padding: 0 !important;
+}
+#v-pills-tabContent,
+#v-pills-messages {
+ border: none;
+}
+#v-pills-messages .table-bordered {
+ border-left: none;
+ border-right: none;
+}
+.width_5 {
+ width: 5%;
+}
+.width_10 {
+ width: 10%;
+}
+.width_15 {
+ width: 15%;
+}
+.width_20 {
+ width: 20%;
+}
+.width_70 {
+ width: 70%;
+}
+.width_60 {
+ width: 60%;
+}
+.btn-outline-gray {
+ border-color: #dcdcdc;
+}
+.text-size_17 {
+ font-size: 1.7rem;
+}
+#statementProfile table thead th {
+ padding: 0.5rem;
+}
+.card-header:first-child {
+ border-radius: 0 !important;
+}
+.img_icon {
+ margin-top: 5px;
+}
+@media (max-width: 868px) {
+ #sportsList .remove-pr {
+  padding-right: 0 !important;
+ }
+ #sportsList .remove-pl {
+  padding-left: 0;
+ }
+}
+@media (max-width: 576px) {
+ .col-sm-2 {
+  -ms-flex: 0 0 16.666667%;
+  flex: 0 0 16.666667%;
+  max-width: 16.666667%;
+ }
+ .col-sm-9 {
+  -ms-flex: 0 0 75%;
+  flex: 0 0 75%;
+  max-width: 75%;
+ }
+ .navbar-brand {
+  margin-right: 5rem;
+ }
+ .responsive {
+  width: 56%;
+ }
+}
+@media (max-width: 400px) {
+ .col-sm-2 {
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
+ }
+ .col-sm-9 {
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
+ }
+ .navbar-brand {
+  margin-right: 3rem;
+ }
+ .width_100 {
+  width: 140px;
+ }
+ .fixed-width-120 {
+  width: 140px;
+ }
+}
+@media (max-width: 380px) {
+ .col-sm-2 {
+  -ms-flex: 0 0 24%;
+  flex: 0 0 24%;
+  max-width: 100%;
+ }
+ .col-sm-9 {
+  -ms-flex: 0 0 68%;
+  flex: 0 0 68%;
+  max-width: 100%;
+ }
+ .match-class {
+  padding-right: 5px;
+ }
+}
+@media (max-width: 330px) {
+ .col-sm-2 {
+  -ms-flex: 0 0 30%;
+  flex: 0 0 30%;
+  max-width: 100%;
+ }
+ .col-sm-9 {
+  -ms-flex: 0 0 62%;
+  flex: 0 0 62%;
+  max-width: 100%;
+ }
+ .navbar-brand {
+  margin-right: 1rem;
+ }
+ .width_100 {
+  width: 120px;
+ }
+ .fixed-width-120 {
+  width: 120px;
+ }
+ .match-class {
+  padding-right: 5px;
+ }
+}
+.dropdown-item:focus,
+.dropdown-item:hover {
+ background: #ffffff !important;
+ box-shadow: inset 3px 0 0px 0px rgb(62, 163, 207);
+ -moz-box-shadow: inset 3px 0 0px 0px rgb(62, 163, 207);
+ -ms-box-shadow: inset 3px 0 0px 0px rgb(62, 163, 207);
+ -o-box-shadow: inset 3px 0 0px 0px rgb(62, 163, 207);
+ -webkit-box-shadow: inset 3px 0 0px 0px rgb(62, 163, 207);
+}
+#userProfile #v-pills-tabContent .form-control {
+ border: none !important;
+}
+.v-select .dropdown-toggle::after {
+ content: none;
+}
+.page-footer {
+ background: rgba(3, 14, 34, 0.8);
+}
+.marquee .slow {
+ display: inline-block;
+ padding-left: 100%;
+ text-indent: 0;
+ animation: marquee 48s linear infinite;
+ bottom: 0px;
+}
+#clock {
+ padding-top: inherit;
+ padding-left: inherit;
+}
+#clock p {
+ font-size: unset;
+ line-height: unset;
+ font-weight: unset;
+}
+#time_clock {
+ padding-left: 2rem;
+}
+#date_clock {
+ display: none;
+}
+.bg-white-grad.sport-1 {
+ background: #dcf0fa !important;
+}

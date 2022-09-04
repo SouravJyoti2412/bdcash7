@@ -1,0 +1,129 @@
+body {
+ padding-bottom:39px;
+ background:#027B5B
+}
+.mainmenu-wrap {
+ position:fixed;
+ z-index:999;
+ background:#027B5B;
+ bottom:0;
+ margin:0;
+ padding:8px 20px;
+ display:flex;
+ justify-content:center;
+ flex-wrap:wrap;
+ width:100%;
+ list-style:none
+}
+.mainmenu-wrap li {
+ margin-right:20px
+}
+.mainmenu-wrap li:last-child {
+ margin-right:0
+}
+.mainmenu-wrap li a {
+ text-align:center;
+ display:block;
+ font-size:10px;
+ text-transform:uppercase;
+ color:#fff
+}
+.mainmenu-wrap li a svg {
+ font-size:12px
+}
+.mainmenu-wrap li a.sponsor svg {
+ font-size:16px
+}
+.mainmenu-wrap li a span {
+ display:block
+}
+.live-upcoming-tab {
+ display:flex;
+ margin:0;
+ padding:0;
+ flex-wrap:wrap;
+ list-style:none
+}
+.live-upcoming-tab li {
+ width:50%
+}
+.live-upcoming-tab li a {
+ display:block;
+ text-align:center;
+ padding:5px 10px;
+ color:#fff;
+ text-decoration:none;
+ font-size:12px;
+ border-left:3px solid #182c61;
+ margin-right:-1px;
+ background:#11b1b0;
+ position:relative
+}
+.live-upcoming-tab li:last-child a {
+ border-right:3px solid #182c61;
+}
+.live-upcoming-tab li a span {
+ position:relative;
+ display:inline-block
+}
+.live-upcoming-tab li a span:before {
+ position:absolute;
+ left:-15px;
+ top:50%;
+ transform:translateY(-50%);
+ width:7px;
+ height:7px;
+ background:red;
+ content:'';
+ -webkit-border-radius:50%;
+ -moz-border-radius:50%;
+ border-radius:50%
+}
+.live-upcoming-tab li.upcoming-tabs a span:before {
+ background: green
+}
+.live-upcoming-tab li.active a {
+ color:#182c61;
+}
+.notification-icons {
+ position:absolute;
+ right:20px;
+ top:10px;
+ display:inline-block;
+ text-align:center;
+ color:#f0ad4e;
+ cursor:pointer
+}
+.notification-icons:before {
+ position:absolute;
+ right:8px;
+ top:2px;
+ width:7px;
+ height:7px;
+ background:red;
+ content:"";
+ border-radius:5px
+}
+.notification-icons span {
+ display:block;
+ font-size:8px;
+ line-height:10px;
+ text-transform:uppercase;
+ font-weight:500
+}
+.qsHeading .panel-title .badge.bg {
+ background:#027B5B!important
+}
+.notice-wrapper {
+ display:none
+}
+.notice-wrapper {
+ padding:10px;
+ text-align:center;
+ background:#027B5B;
+ margin:0 5px 5px
+}
+.notice-wrapper p {
+ margin-bottom:0;
+ color:#182C61
+}

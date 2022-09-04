@@ -1,0 +1,1199 @@
+<!-- header  -->
+{% include 'homepage_header.html' %}
+
+               
+                
+  <div class="">
+    <section class="callaction ">
+      <div class="container p-0">
+        <div class="row">
+          <div class="col-lg-12 bhoechie-tab-container">
+            <div class=" bhoechie-tab-menu">
+              <ul class="list-group tabMenu">
+                <li>
+                  <a href="#" class="list-group-item active text-center list-item" >
+                    My Profile
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="list-group-item text-center list-item " id="deposit-numberW" data-toggle="modal" data-target="#deposit">
+                    Deposit Request
+                  </a>
+                </li>
+                                <li>
+                    <a href="#requestWithdrawModal" id="requestWithdrawModal" class="list-group-item text-center list-item wDraw" data-toggle="modal" data-target="#clubwidthdraw">
+                      Withdraw Request
+                    </a>
+                  </li>
+                                <li>
+                    {% comment %} <a href="#balancetrnsfr" id="1" class="list-group-item text-center list-item wDraw" data-toggle="modal" data-target="#balancetrnsfr">
+                      Balance Trancefer
+                    </a> {% endcomment %}
+                  </li>
+                                <li>
+                  <a href="#" class="list-group-item text-center list-item"  data-toggle="modal" data-target="#club-change-password">
+                    Change Password
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="bhoechie-tab">
+              <div class="bhoechie-tab-content ">
+                <center>
+                  <table class="table table-bordered">
+                    <tbody>
+                      <tr>
+                        <th style="color: #1E5999; font-size: 17px;"><strong>Full Name</strong></th>
+                        <td>{{user.first_name}} {{user.last_name}}</td>
+                      </tr>
+                      <tr>
+                        <th style="color: #1E5999; font-size: 17px;"><strong>Username</strong></th>
+                        <td>{{user.username}}</td>
+                      </tr>
+                      <tr>
+                        <th style="color: #1E5999; font-size: 17px;"><strong>Mobile No.</strong></th>
+                        <td>{{user.phoneno}}</td>
+                      </tr>
+                      <tr>
+                        <th style="color: #1E5999; font-size: 17px;"><strong>Email</strong></th>
+                        <td>{{user.email}}</td>
+                      </tr>
+  
+  
+                          </form>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+ 
+<!-- deposite model  -->
+{% include 'deposite.html' %}
+<!-- deposite model end  -->
+  
+
+
+{% comment %} <div class="modal fade" id="bet-sel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Bet Sell Confirmation</h4>
+      </div>
+      <div class="modal-body" style="background:url('/static/images/reg-bg.html')no-repeat bottom center !important;">
+        <p>Are you sure want to sell this bet ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <a class="btn btn-danger btn-ok">Yes</a>
+      </div>
+    </div>
+  </div>
+</div> {% endcomment %}
+{% comment %} <div class="modal fade" id="cancel-withrow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Cancel Withrow Confirmation</h4>
+      </div>
+      <div class="modal-body" style="background:url('/static/images/reg-bg.html')no-repeat bottom center !important;">
+        <p>Are you sure want to cancel this withrow ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <a class="btn btn-danger btn-ok">Yes</a>
+      </div>
+    </div>
+  </div>
+</div> {% endcomment %}
+
+ <div id="clubwidthdraw" class="modal fade" role="dialog" >
+  <div class="modal-dialog  ">
+    <div class="modal-content">
+      <div class="modal-header m-head mh-color" style="background:red;  color:#fff !important;">
+        <button onClick="window.location.reload();" type="button" class="close" data-dismiss="modal" style="color: #ffffff">×</button>
+        {% for i in logo %}
+        <h4 class="modal-title" style="color: #D2D2D2" id="clubwidthdraw"> <img style="width: 85px;height: 32px;margin-left: 10px;" src="/media/{{i.logo}}"> &nbsp;Request a withdraw</h4>
+        {% endfor %}
+      </div>
+      <form action="{% url 'widthdrawl_request' %}" method="post">
+        {% csrf_token %}
+        <div class="modal-body" style="padding: 2% !important">
+          <div role="form" class="register-form">
+           <div id="status_data1">
+           </div>
+           <hr class="colorgraph">
+           <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <label style="text-align: left;width: 100%;">Method<span style="color:#DD4F43;">*</span></label>
+                <select class="form-control" required  name="withdraw_method" id="withdraw_method">
+                    {% comment %} <option value="">Select Method</option> {% endcomment %}
+                    <option value="Bkash">BKASH</option> 
+                    <option value="Nagad">NAGAD</option> 
+                    <option value="Rocket">ROCKET</option> 
+                </select>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <label style="text-align: left;width: 100%;">Type <span style="color:#DD4F43;">*</span></label>
+                <select placeholder="Account Type" required class="form-control" id="withdraw_account_type" name="account_type">
+                  {% comment %} <option value="">Account Type</option> {% endcomment %}
+                  <option value="Personal">Personal</option>
+                  <option value="Agent">Agent</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <label style="text-align: left;width: 100%;">Amount <span style="color:#DD4F43;">*</span></label>
+                <input type="text" class="form-control bg-light-gray" required id="req-withdraw-amount"
+                    name="withdraw_amount"  placeholder="Amount" required tabindex="1">
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <label style="text-align: left;width: 100%;"> To <span style="color:#DD4F43;">*</span></label>
+              <div class="form-group">
+                <input type="number" id="req-withdraw-to"
+                name="withdraw_to" class="form-control input-lg" placeholder=" To account holder number" required   tabindex="1">
+              </div>
+            </div>
+          </div>
+          <hr class="colorgraph">
+          <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6"><button  style="background: #126e51 !important;color:#fff !important;" onclick="cwithdrawPost();" value="" class="btn btn-block btn-lg mh-color" type="submit" tabindex="7"> Submit </button></div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div> 
+</div>
+<div id="club-change-password" class="modal fade" role="dialog" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog " style="color:red !important;">
+
+    <div class="modal-content">
+      <div class="modal-header m-head mh-color" style="  background: #ff0606 !important;">
+        <button type="button" onClick="window.location.reload();" class="close" data-dismiss="modal" style="color: #ffffff">×</button>
+        {% for i in logo %}
+        <h4 class="modal-title" style="color: #D2D2D2"> <img style="width: 85px;height: 32px;margin-left: 10px;" src="/media/{{i.logo}}"> &nbsp; Change Password</h4>
+      {% endfor %}
+      </div>
+      <form action="{% url 'change_pass' %}" method="post">
+        {% csrf_token %}
+        <div class="modal-body" style="padding: 2% !important">
+          <div class="">
+            <div role="form" class="register-form">
+              <hr class="colorgraph">
+              <div class="form-group">
+                <label style="text-align: left;width: 100%;">Current Password <span style="color:#DD4F43;">*</span></label>
+                <input type="password" name="current_password" id="user-current-password" class="form-control input-lg" placeholder="Current Password " tabindex="3" required="">
+              </div>
+              <div class="form-group">
+                <label style="text-align: left;width: 100%;">New Password <span style="color:#DD4F43;">*</span></label>
+                <input type="password" name="new_password" id="user-new-password" class="form-control input-lg" placeholder="New Password" tabindex="3" minlength="8" required="">
+              </div>
+              <div class="form-group">
+                <label style="text-align: left;width: 100%;">Confirm Password <span style="color:#DD4F43;">*</span></label>
+                <input type="password" name="confirm_password" id="user-cnf-password" class="form-control input-lg" placeholder="Confirm Password" tabindex="3" required="" minlength="8">
+              </div>
+              <hr class="colorgraph">
+              <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6"><button style="background: #126e51 !important;color:#fff !important;" type="submit" name="formclub" class="btn btn-block btn-lg mh-color" tabindex="7" > Submit </button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<footer class="footer-basic-centered ">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        {% for i in logo %}
+          <a class="" href="/"><img style="width: 150px;height: 60px;margin-left: 10px;" src="/media/{{i.logo}}"></a>
+          {% endfor %}
+          <p style="font-size: 15px;color: #dcdcdc;" class="footer-company-name">Designer By <a href="index.html" style="color:#000">Bdcash7.com</a> &copy; 2022 All Right Reserved.</p>
+      </div>
+      <div class="col-lg-3">
+                    <a class="" href="#">
+                        <img style="width: 150px;height: 60px;margin-left: 10px;" src="/static/images/Payment.png">
+                    </a>
+                   
+                </div>
+      <div class="col-lg-3">
+        <span class="userAlert" style="color:#fff;"> Caution! We strongly discourage to use this site who are not 18+ and also site administrator is not liable to any kind of issues created by user.</span>
+     </div>
+   </div>
+ </div>
+</footer>
+</div>
+
+<script src="/static/js/jquery.min_1f700.js?v=1.0.1"></script>
+<script src="/static/js/bootstrap.minf700.js?v=1.0.1"></script>
+{% comment %} <script src="/static/js/validation/placeBet.js"></script>
+<script src="/static/js/validation/validated.js"></script>
+<script src="/static/js/validation/siteRefresh.js"></script>
+<script src="/static/js/validation/deposit_and_withdraw.js"></script> 
+<!-- <script>
+  $(document).ready(function () {
+    $("#liveContent").load('content.html');
+    $("#upcomingContent").load('upcomingMatch.html');
+
+  }); 
+</script> -->
+<!-- <script src="newFunctions/js/cartf700.html?v=1.0.1"></script> -->
+<!-- <script src="newFunctions/js/liveReloaderf700.html?v=1.0.1"></script> -->
+{% comment %} <script src="/static/assets/js/vendor/jquery-2.2.4.minf700.js?v=1.0.1"></script>
+<script src="/static/assets/js/pusher.minf700.js?v=1.0.1"></script>
+<script src="/static/assets/js/pluginsf700.js?v=1.0.1"></script> {% endcomment %}
+<script src="/static/assets/js/jquery.datatable.minf700.js?v=1.0.1"></script>
+<script src="/static/assets/js/datatable.bootstrap.minf700.js?v=1.0.1"></script>
+<script src="/static/assets/js/owl.carousel.minf700.js?v=1.0.1"></script>
+<!-- <script>
+  $(document).ready(function() {
+    var table = $('#example1').DataTable({
+      "sDom" : "<'row'<'col-sm-3'l><'col-sm-4'p><'col-sm-5'f>>" +
+      "<'row'<'col-sm-12'tr>>" +
+      "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+    });
+  });
+</script> -->
+
+<!-- <script>
+  $(document).ready( function () {
+    var table = $('#example1').DataTable( {
+      destroy: true,
+      pageLength : 10
+    } )
+  } );
+  $(document).ready( function () {
+    var table = $('#example2').DataTable( {
+      destroy: true,
+      pageLength : 10
+    } )
+  } );
+  $(document).ready( function () {
+    var table = $('#example3').DataTable( {
+      destroy: true,
+      pageLength : 10
+    } )
+  } );
+  $(document).ready( function () {
+    var table = $('#example4').DataTable( {
+      destroy: true,
+      pageLength : 10
+    } )
+  } );
+  $(document).ready( function () {
+    var table = $('#example5').DataTable( {
+      destroy: true,
+      pageLength : 10
+    } )
+  } );
+  $(document).ready( function () {
+    var table = $('#example0').DataTable( {
+      destroy: true,
+      pageLength : 10
+    } )
+  } );
+</script> -->
+<!-- <script>
+  $(document).ready(function(){ $('.itemSlider').owlCarousel({ margin: 0, loop: true, autoplay: true, autoplayTimeout: 4000, smartSpeed: 800, dots:false, responsive: { 0: { items: 4 }, 450: { items: 4 }, 768: { items: 5 }, 1000: { items: 6 } } }); });
+</script> -->
+
+<!-- <script>
+  $(document).ready(function(){ $('.game-slider').owlCarousel({ margin: 0, loop: true, autoplay: true, autoplayTimeout: 3000,  dots:false, responsive: { 0: { items: 1 }, 450: { items: 2 }, 768: { items: 3 },1000: { items: 4 } } }); });
+</script> -->
+<!-- <script>
+  function showTimex(){
+    var date = new Date();
+        var h = date.getHours(); // 0 - 23
+        var m = date.getMinutes(); // 0 - 59
+        var s = date.getSeconds(); // 0 - 59
+        var session = "AM";
+
+        if(h == 0){
+          h = 12;
+        }
+        if(h > 12){
+          h = h - 12;
+          session = "PM";
+        }
+        h = (h < 10) ? "0" + h : h;
+        m = (m < 10) ? "0" + m : m;
+        s = (s < 10) ? "0" + s : s;
+        var time = h + ":" + m + ":" + s + "" + session;
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        var curWeekDay = days[date.getDay()];
+        var curDay = date.getDate();
+        var curMonth = months[date.getMonth()];
+        var curYear = date.getFullYear();
+        var today = curWeekDay+" "+curDay+" "+curMonth+" ";
+        //document.getElementById("MyClock").innerText = today+""+time;
+        document.getElementById("MyClock").textContent = today+""+time;
+        setTimeout(showTimex, 1000);
+      }
+      showTimex();
+
+    </script> -->
+    <!-- <script type="text/javascript">
+      function showTime(){
+        var date = new Date();
+    var h = date.getHours(); // 0 - 23
+    var m = date.getMinutes(); // 0 - 59
+    var s = date.getSeconds(); // 0 - 59
+    var session = "AM";
+    
+    if(h == 0){
+      h = 12;
+    }
+    
+    if(h > 12){
+      h = h - 12;
+      session = "PM";
+    }
+    
+    h = (h < 10) ? "0" + h : h;
+    m = (m < 10) ? "0" + m : m;
+    s = (s < 10) ? "0" + s : s;
+    
+    var time = h + ":" + m + ":" + s + " ";
+    document.getElementById("MyClockDisplay").innerText = time;
+    document.getElementById("MyClockDisplay").textContent = time;
+    
+    setTimeout(showTime, 1000);
+    
+  }
+  showTime();
+</script> -->
+<!-- <script>
+  $('.number').on('keypress', function(e) {
+    if (e.which == 32)
+      return false;
+  });
+  function valueChange(el) {
+    $('#betLabel').text(visual_number_format($(el).val()));
+    $('#modalPossibleAmountLabel').text(visual_number_format($('#modalBetRate').val()* $(el).val()));
+  }
+
+  $('.amountBtn').click(function () {
+    $('.amountBtn').removeClass('btn-active');
+    $(this).addClass('btn-active');
+    var amount = $(this).text();
+    $('#bet').val(amount).trigger('change')
+  })
+</script> -->
+<!-- <script>
+
+  $("#bet").on("change keypress input", function() {
+    var rate=$("#asshole").text();
+    $('#stake').text(this.value);
+    var as=document.getElementById("stake").value;
+    document.getElementById("possible").style.display="none";
+    document.getElementById("poss").style.visibility="visible";
+    var as=($('#stake').text()*rate).toFixed(2);
+    $('#poss').text(as);
+  })
+  ;
+
+</script> -->
+<!-- <script>
+  function bet(bet_id) {
+    $.ajax({
+      url : "bet.php",
+      type : "post",
+      dataType:"text",
+      data : {
+       stake_id: bet_id
+     },
+     success : function (a){
+      var respData1 = JSON.parse(a);
+
+
+      if(respData1.fucker === 'Active'){
+
+        $('#error_data').html(respData1.error);
+        $('#first_data').html(respData1.first);
+        $('#second_data').html(respData1.second);
+        $('#possible').html(respData1.possible);
+        $('#asshole').html(respData1.possible1);
+        $('#button_data').html(respData1.button);
+        $('#betRequestModal').modal('show');
+        $('#possible').trigger('change');
+        $('#rate').trigger('change');
+        $('#betRequestModal').modal('show');
+      }
+      else{
+        location.reload();
+      }
+    }
+  });
+  } 
+</script> -->
+<!-- <script>
+
+  function betPost(bet_id) {
+
+    var amount=$("#stake").text();
+    $.ajax({
+      url : "bet-post.php",
+      type : "post",
+      dataType:"text",
+      data : {
+       stake_id: bet_id,
+       amount: amount
+     },
+     success : function (a){
+      var respData = JSON.parse(a);
+
+      if(respData.fucker === 'Active'){
+        $('#error_data').html(respData.error);
+        $('#first_data').html(respData.first);
+        $('#second_data').html(respData.second);
+        $('#possible').html(respData.possible);
+        $('#asshole').html(respData.possible1);
+        $('#button_data_loading').html(respData.button);
+        $('#betRequestModal').modal('show');
+        $('#possible').trigger('change');
+        $('#rate').trigger('change');
+        $('#betRequestModal').modal('show');
+      }
+      else{
+        location.reload();
+      }
+    }
+  });
+
+  }
+  $('#button_data').click(function(event) {
+    $('#button_data').addClass('hidden');
+    $('#button_data_loading').removeClass('hidden');
+  }); 
+</script> -->
+
+<!-- <script>
+
+  function withdrawPost() {
+
+    var withdraw_amount=document.getElementById("req-withdraw-amount").value;
+    var withdraw_method=document.getElementById("withdraw_method").value;
+    var withdraw_to=document.getElementById("req-withdraw-to").value;
+    var account_type=document.getElementById("withdraw_account_type").value;
+    $.ajax({
+      url : "withdraw.php",
+      type : "post",
+      dataType:"text",
+      data : {
+       withdraw_method: withdraw_method,
+       account_type: account_type,
+       withdraw_to: withdraw_to,
+       withdraw_amount: withdraw_amount
+     },
+     success : function (a){
+      var respData3 = JSON.parse(a);
+      $('#status_data1').html(respData3.wstatues);
+      $('#requestWithdrawModal').modal('show');
+    }
+  });
+    
+  } 
+</script> -->
+<!-- <script>
+  function cwithdrawPost() {
+    var withdraw_amount=document.getElementById("req-withdraw-amount").value;
+    var withdraw_method=document.getElementById("withdraw_method").value;
+    var withdraw_to=document.getElementById("req-withdraw-to").value;
+    var account_type=document.getElementById("withdraw_account_type").value;
+    $.ajax({
+      url : "cwithdraw.php",
+      type : "post",
+      dataType:"text",
+      data : {
+       withdraw_method: withdraw_method,
+       account_type: account_type,
+       withdraw_to: withdraw_to,
+       withdraw_amount: withdraw_amount
+     },
+     success : function (a){
+      var respData3 = JSON.parse(a);
+      $('#status_data1').html(respData3.wstatues);
+      $('#buttondata').html(respData3.buttondata);
+      $('#requestWithdrawModal').modal('show');
+    }
+  });
+  } 
+  // $('#buttondata').click(function(event) {
+  //   $('#buttondata').addClass('hidden');
+  //   $('#button_data_loading').removeClass('hidden');
+  // });
+</script> -->
+<!-- <script>
+
+  function u2ubtPost() {
+
+    var password=document.getElementById("cpassword").value;
+    var amount=document.getElementById("amount").value;
+    var username=document.getElementById("username").value;
+    $.ajax({
+      url : "u2ubtpost.php",
+      type : "post",
+      dataType:"text",
+      data : {
+       password: password,
+       amount: amount,
+       username: username
+     },
+     success : function (a){
+      var respData3 = JSON.parse(a);
+      $('#wstatues').html(respData3.wstatues);
+      $('#wstatues1').html(respData3.wstatues1);
+      $('#balancetrnsfr').modal('show');
+    }
+  });
+    
+  } 
+</script> -->
+<!-- <script>
+  $('.list-item').click(function () {
+    $('.list-item').removeClass('active');
+    $(this).addClass('active');
+    $('.bhoechie-tab').addClass('hide');
+    $($(this).attr('href')).removeClass('hide');
+  });
+</script> -->
+<!-- <script>
+  $('#all').on('click',function () {
+    $('.Football').show();
+    $('.Cricket').show();
+    $('.Basketball').show();
+    $('.Badminton').show();
+    $('.Tennis').show();
+    $('.vball').show();
+    $('.Handball').show();
+    $('.Hockey').show();
+    $('.Virtual Game').show();
+  });
+  $('#Cricket').on('click',function () {
+    $('.Football').hide();
+    $('.Cricket').show();
+    $('.Basketball').hide();
+    $('.Badminton').hide();
+    $('.Tennis').hide();
+    $('.vball').hide();
+    $('.Handball').hide();
+    $('.Hockey').hide();
+    $('.Virtual Game').hide();
+  });
+  $('#Football').on('click',function () {
+    $('.Football').show();
+    $('.Cricket').hide();
+    $('.Basketball').hide();
+    $('.Badminton').hide();
+    $('.Tennis').hide();
+    $('.vball').hide();
+    $('.Handball').hide();
+    $('.Hockey').hide();
+    $('.Virtual Game').hide();
+  });
+  $('#Basketball').on('click',function () {
+    $('.Football').hide();
+    $('.Cricket').hide();
+    $('.Basketball').show();
+    $('.Badminton').hide();
+    $('.Tennis').hide();
+    $('.vball').hide();
+    $('.Handball').hide();
+    $('.Hockey').hide();
+    $('.Virtual Game').hide();
+  });
+  $('#Badminton').on('click',function () {
+    $('.Football').hide();
+    $('.Cricket').hide();
+    $('.Badminton').show();
+    $('.Tennis').hide();
+    $('.vball').hide();
+    $('.Basketball').hide();
+    $('.Handball').hide();
+    $('.Hockey').hide();
+    $('.Virtual Game').hide();
+  });
+  $('#Tennis').on('click',function () {
+    $('.Football').hide();
+    $('.Cricket').hide();
+    $('.Badminton').hide();
+    $('.Tennis').show();
+    $('.vball').hide();
+    $('.Basketball').hide();
+    $('.Handball').hide();
+    $('.Hockey').hide();
+    $('.Virtual Game').hide();
+  });
+  $('#vball').on('click',function () {
+    $('.Football').hide();
+    $('.Cricket').hide();
+    $('.Badminton').hide();
+    $('.Tennis').hide();
+    $('.vball').show();
+    $('.Basketball').hide();
+    $('.Handball').hide();
+    $('.Hockey').hide();
+    $('.Virtual Game').hide();
+  });
+  $('#Handball').on('click',function () {
+    $('.Football').hide();
+    $('.Cricket').hide();
+    $('.Badminton').hide();
+    $('.Tennis').hide();
+    $('.vball').hide();
+    $('.Basketball').hide();
+    $('.Handball').show();
+    $('.Hockey').hide();
+    $('.Virtual Game').hide();
+  });
+  $('#Hockey').on('click',function () {
+    $('.Football').hide();
+    $('.Cricket').hide();
+    $('.Badminton').hide();
+    $('.Tennis').hide();
+    $('.vball').hide();
+    $('.Basketball').hide();
+    $('.Handball').hide();
+    $('.Hockey').show();
+    $('.Virtual Game').hide();
+  });
+  $('#Virtual Game').on('click',function () {
+    $('.Football').hide();
+    $('.Cricket').hide();
+    $('.Badminton').hide();
+    $('.Tennis').hide();
+    $('.vball').hide();
+    $('.Basketball').hide();
+    $('.Handball').hide();
+    $('.Hockey').hide();
+    $('.Virtual Game').show();
+  });
+  $('#bet-sel').on('show.bs.modal', function(e) {
+    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+  });
+</script> -->
+
+
+
+
+
+<!-- <script type="text/javascript">
+  setTimeout(function(){
+    document.getElementById('aap').className = 'waa';
+  }, 5000);
+  jQuery(document).ready(function($){
+    var addedclass="";
+    var flipResult="";
+    var result="";
+    var amount="";
+    var stake="";
+    var run=0;
+    $('#btn-1').click(function(event) {
+      if(run==0)
+      {
+
+       stake="1";
+       $('#btn-1').addClass('active');
+       $('#btn-2').removeClass('active');
+       $('#btn-3').removeClass('active');
+       $('#btn-4').removeClass('active');
+       $('#btn-5').removeClass('active');
+       $('#btn-6').removeClass('active');
+     }
+   });
+
+    $('#btn-2').click(function(event) {
+      if(run==0)
+      {
+
+       stake="2";
+       $('#btn-1').removeClass('active');
+       $('#btn-2').addClass('active');
+       $('#btn-3').removeClass('active');
+       $('#btn-4').removeClass('active');
+       $('#btn-5').removeClass('active');
+       $('#btn-6').removeClass('active');
+     }
+     else
+     {
+
+     }
+   });
+
+    $('#btn-3').click(function(event) {
+      if(run==0)
+      {
+
+       stake="3";
+       $('#btn-1').removeClass('active');
+       $('#btn-2').removeClass('active');
+       $('#btn-3').addClass('active');
+       $('#btn-4').removeClass('active');
+       $('#btn-5').removeClass('active');
+       $('#btn-6').removeClass('active');
+     }
+     else
+     {
+
+     }
+   });
+    $('#btn-4').click(function(event) {
+      if(run==0)
+      {
+
+       stake="4";
+       $('#btn-1').removeClass('active');
+       $('#btn-2').removeClass('active');
+       $('#btn-3').removeClass('active');
+       $('#btn-4').addClass('active');
+       $('#btn-5').removeClass('active');
+       $('#btn-6').removeClass('active');
+     }
+     else
+     {
+
+     }
+   });
+    $('#btn-5').click(function(event) {
+      if(run==0)
+      {
+
+       stake="5";
+       $('#btn-1').removeClass('active');
+       $('#btn-2').removeClass('active');
+       $('#btn-3').removeClass('active');
+       $('#btn-4').removeClass('active');
+       $('#btn-5').addClass('active');
+       $('#btn-6').removeClass('active');
+     }
+     else
+     {
+
+     }
+   });
+    $('#btn-6').click(function(event) {
+      if(run==0)
+      {
+
+       stake="6";
+       $('#btn-1').removeClass('active');
+       $('#btn-2').removeClass('active');
+       $('#btn-3').removeClass('active');
+       $('#btn-4').removeClass('active');
+       $('#btn-5').removeClass('active');
+       $('#btn-6').addClass('active');
+     }
+     else
+     {
+
+     }
+   });
+    $('#play1').on('click', function(){
+      alert('Refresh your browser');
+      location.reload();
+    });
+    $('#play').on('click', function(){
+      run=0;
+
+      $('#btn-tail').css('background', '#123');
+      $('#btn-head').css('background', '#123');
+      var amount=$('#ludu_amount').val();
+      if(stake=="" )
+      {
+        alert('choose your point (1-6)');
+        run=0;
+      }
+      else
+      {
+        if(amount<=0)
+        {
+          alert('Enter Stake amount');
+          run=0;
+        }
+        else
+        {
+          $.ajax({
+            method: "POST",
+            url:'ludupost.php',
+            data : {
+             stake: stake,
+             amount: amount
+           },
+           success : function (a){
+            var respData = JSON.parse(a);
+            $('#coin').html(respData.wstatues);
+            $('#result').html(respData.b);
+            $('#notice').html(respData.c);
+            $('#posiblewin').html(respData.d);
+            $('#error').html(respData.error);
+          }
+        }); 
+        }
+      }
+    });
+        $('#ludu_amount').keyup(function(event) {
+      var rate=2.00;
+      var amount=$('#ludu_amount').val();
+      var returna=amount*rate;
+      var returna=returna.toFixed(1); 
+      $('#pwin').html(returna);
+    });
+  });
+
+
+</script> -->
+
+<!-- <script type="text/javascript">
+  setTimeout(function(){
+    document.getElementById('aap').className = 'waa';
+  }, 5000);
+  jQuery(document).ready(function($){
+    var addedclass="";
+    var flipResult="";
+    var result="";
+    var coin_amount="";
+    var coin_stake="";
+    var run=0;
+    $('#btn-head').click(function(event) {
+      if(run==0)
+      {
+
+       coin_stake="1";
+       $('#btn-head').addClass('active');
+       $('#btn-till').removeClass('active');
+     }
+   });
+
+    $('#btn-till').click(function(event) {
+      if(run==0)
+      {
+
+       coin_stake="2";
+       $('#btn-head').removeClass('active');
+       $('#btn-till').addClass('active');
+     }
+     else
+     {
+
+     }
+   });
+
+    $('#cplay').on('click', function(){
+      run=0;
+      var coin_amount=$('#coin_amount').val();
+      if(coin_stake=="" )
+      {
+        alert('choose your point ( Head or Tail )');
+        run=0;
+      }
+      else
+      {
+        if(coin_amount<=0)
+        {
+          alert('Enter Stake amount');
+          run=0;
+        }
+        else
+        {
+          $.ajax({
+            method: "POST",
+            url:'coinpost.php',
+            data : {
+             coin_stake: coin_stake,
+             coin_amount: coin_amount
+           },
+           success : function (a){
+            var respData = JSON.parse(a);
+            $('#coin').html(respData.wstatues);
+            $('#result').html(respData.b);
+            $('#notice').html(respData.c);
+            $('#posiblewin').html(respData.posiblewin);
+            $('#error').html(respData.error);
+          }
+        }); 
+        }
+      }
+    });
+
+        $('#coin_amount').keyup(function(event) {
+      // var rate=2.2;
+      var rate=1.75;
+      var amount=$('#coin_amount').val();
+      var returna=amount*rate;
+      var returna=returna.toFixed(1); 
+      $('#coin_pwin').html(returna);
+    });
+  });
+
+
+</script> -->
+<!-- <script type="text/javascript">
+  setTimeout(function(){
+    document.getElementById('aap').className = 'waa';
+  }, 5000);
+  jQuery(document).ready(function($){
+    var coin_amount="";
+    $('#playludutouch').on('click', function(){
+      $.ajax({
+        method: "POST",
+        url:'ludutouchpost.php',
+        success : function (a){
+          var respData = JSON.parse(a);
+          $('#coin').html(respData.wstatues);
+          $('#result').html(respData.b);
+          $('#notice').html(respData.c);
+          $('#posiblewin').html(respData.posiblewin);
+          $('#error').html(respData.error);
+        }
+      }); 
+    });
+
+  });
+
+
+</script> -->
+<script>
+  $(document).ready(function(){
+  $flag=1;
+    $("#name").focusout(function(){
+          $myname =$("#name").val();
+      if($(this).val()==''){
+          $(this).css("border-color", "#FF0000");
+            $('#userSignUp').attr('disabled',true);
+             $("#error_name").text("* You have to fill first name!");
+        }
+        else if (($myname.length < 4) || ($myname.length > 25 ))
+        {   
+            $(this).css("border-color", "#FF0000");
+            $('#userSignUp').attr('disabled',true);
+            $("#error_name").text("*Lenght should Be 4 to 25");
+        }
+          else
+        {
+          $(this).css("border-color", "#2eb82e");
+          $('#userSignUp').attr('disabled',false);
+          $("#error_name").text("");
+
+        }
+     });
+     $("#lname").focusout(function(){
+      $myname =$("#lname").val();
+  if($(this).val()==''){
+      $(this).css("border-color", "#FF0000");
+        $('#userSignUp').attr('disabled',true);
+         $("#error_lname").text("* You have to fill last name!");
+    }
+    else if (($myname.length < 4) || ($myname.length > 25 ))
+    {   
+        $(this).css("border-color", "#FF0000");
+        $('#userSignUp').attr('disabled',true);
+        $("#error_lname").text("*Lenght should Be 4 to 25");
+    }
+      else
+    {
+      $(this).css("border-color", "#2eb82e");
+      $('#serSignUp').attr('disabled',false);
+      $("#error_lname").text("");
+
+    }
+ });
+      $("#userId").focusout(function(){
+          $lname =$("#userId").val();
+      if($(this).val()==''){
+          $(this).css("border-color", "#FF0000");
+            $('#userSignUp').attr('disabled',true);
+            $("#userIdError").text("* You have to fill User id!");
+        }
+          else if (($lname.length < 4) || ($lname.length > 10 ))
+        {   
+            $(this).css("border-color", "#FF0000");
+            $('#userSignUp').attr('disabled',true);
+            $("#userIdError").text("*Lenght Should Be 4 to 10");
+        }
+        else
+        {
+          $(this).css("border-color", "#2eb82e");
+          $('#userSignUp').attr('disabled',false);
+          $("#userIdError").text("");
+        }
+     });
+     $("#email").focusout(function(){
+      if($(this).val()==''){
+          $(this).css("border-color", "#FF0000");
+              $('#userSignUp').attr('disabled',true);
+               $("#error_emailcheck").text("* You have to enter your email!");
+      }
+     
+      else
+      {
+          $(this).css("border-color", "#2eb82e");
+          $('#submit').attr('disabled',false);
+          $("#error_emailcheck").text("");
+
+      }
+ });
+      
+      $("#mobileNumber").focusout(function(){
+          
+          $pho =$("#mobileNumber").val();
+      if($(this).val()==''){
+          $(this).css("border-color", "#FF0000");
+            $('#userSignUp').attr('disabled',true);
+            $("#mobileError").text("* You have to enter Phone Number!");
+        }
+          
+        else if ($pho.length!=10)
+        {   
+                  $(this).css("border-color", "#FF0000");
+            $('#userSignUp').attr('disabled',true);
+            $("#mobileError").text("* Lenght of Number Should Be Ten");
+        }
+        else{
+          $(this).css({"border-color":"#2eb82e"});
+          $('#userSignUp').attr('disabled',false);
+          $("#mobileError").text("");
+        }
+
+    });
+      $("#pass").focusout(function(){
+      
+          $pass =$("#pass").val();
+      if($(this).val()==''){
+          $(this).css("border-color", "#FF0000");
+            $('#userSignUp').attr('disabled',true);
+            $("#error_pass").text("* enter password!");
+        }
+         
+        else if ($pass.length < 7 )
+        {   
+            $(this).css("border-color", "#FF0000");
+            $('#userSignUp').attr('disabled',true);
+            $("#error_pass").text("* Lenght of password should be minimum 8 charecter");
+        }
+        
+         
+          
+        else{
+          $(this).css({"border-color":"#2eb82e"});
+          $('#userSignUp').attr('disabled',false);
+          $("#error_pass").text("");
+        }
+
+    });
+      $("#cpass").focusout(function(){
+          
+          $pass =$("#pass").val();
+          $cpass =$("#cpass").val();
+      if($(this).val()==''){
+          $(this).css("border-color", "#FF0000");
+            $('#userSignUp').attr('disabled',true);
+            $("#error_cpass").text("* enter confirm password!");
+        }
+          else if ($pass != $cpass)
+          {   
+              $(this).css("border-color", "#FF0000");
+              $('#userSignUp').attr('disabled',true);
+              $("#error_cpass").text("* password not matched");
+      }
+          else{
+          $(this).css({"border-color":"#2eb82e"});
+          $('#userSignUp').attr('disabled',false);
+          $("#error_cpass").text("");
+        }
+       });
+     $( "#userSignUp" ).click(function() {
+       if($("#name" ).val()=='')
+       {
+          $("#name").css("border-color", "#FF0000");
+            $('#userSignUp').attr('disabled',true);
+             $("#error_name").text("* You have to enter your first name!");
+        }if($("#lname" ).val()=='')
+        {
+           $("#lname").css("border-color", "#FF0000");
+             $('#userSignUp').attr('disabled',true);
+              $("#error_lname").text("* You have to enter your last name!");
+         }
+        if($("#userId" ).val()=='')
+       {
+         // $("#lastname").css("border-color", "#FF0000");
+            $('#userSignUp').attr('disabled',true);
+             $("#userIdError").text("* You have to enter your User id!");
+        }
+          if($("#email" ).val()=='')
+          {
+           $("#email").css("border-color", "#FF0000");
+               $('#submit').attr('disabled',true);
+                $("#error_emailcheck").text("* You have to enter email!");
+       }
+       
+        if($("#mobileNumber" ).val()=='')
+       {
+          //$("#phone").css("border-color", "#FF0000");
+            $('#userSignUp').attr('disabled',true);
+             $("#mobileError").text("* You have to enter your Phone Number!");
+        }
+    if($("#pass" ).val()=='')
+       {
+          $("#pass").css("border-color", "#FF0000");
+            $('#userSignUp').attr('disabled',true);
+             $("#error_pass").text("* You have to enter your password!");
+        }
+          if($("#cpass" ).val()=='')
+       {
+          $("#cpass").css("border-color", "#FF0000");
+            $('#userSignUp').attr('disabled',true);
+             $("#error_cpass").text("* You have to enter your confirm password!");
+        }
+    
+    
+      
+      
+      
+      });
+
+          
+    
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

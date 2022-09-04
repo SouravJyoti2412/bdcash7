@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ <title>One/Two | Online Gamble Platform. </title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ {% include "games_header.html" %}
+ <style>
+  .centertext {
+    position: absolute;
+    top: 38%;
+    left: 20%;
+    font-size:45px;
+    font-weight:600;
+     transform: translate(25%, -5%); 
+     z-index:2;
+  }
+</style>
+<div style="margin:0 auto;min-height: 609px;background:linear-gradient(#AC4425,#224B0C,#99ac7e,#e2e756) !important; overflow: hidden;padding-right: 5px;padding-left: 5px;border: 5px solid #ff0080;">
+    <br>
+    <div class="container-fluid" >
+      <h1 style="color:red !important" id ="result"></h1>
+    </div>
+  <div id="coin">
+    <div class="side-a tail">
+      <div id = "toss_value" class="coin centertext "></div>
+      <img class="coin" style="width: 100%;height: 100% ; display:none;" id ="" src="/static/images/only_coin.png">
+      <img style="width: 100%;height: 100%;" class="ludo_png" src="/static/images/onetwobd.png">
+      <img class="ludo_gif" style="width: 100%;height: 100%; display:none" id ="gif" src="/static/images/onetwo.gif">
+    </div>
+  </div>
+  <div id="error">
+  </div>
+  <br>
+  <div style="width:100%;display: block;overflow: hidden;">
+    <div  class="btn-top">
+      <p>Select A Option <span>Rate: 1.75</span></p>
+    </div>
+
+    <div style="padding: 5px;background: linear-gradient(#e080ff,#40E0D0,#6495ED,#CCF,#eE3163) !important;border-radius: 5px;position: relative;bottom: 0;overflow: hidden;">
+      <button class="btn d3" id="btn-one" style="width: 49%;"><div class="d31">ONE-1</div></button>
+      <button class="btn d3" id="btn-two" style="width: 49%;"><div class="d31">TWO-2</div></button>
+    </div>
+    <div style="width:100%;float:left;">
+      <div style="width:40%;float:left;">
+        <input type="number" class="form-control form-custom" name="onetwo_amount" id="onetwo_amount" placeholder=" Enter Amount">
+      </div>
+      <div style="width:60%;float:right;">
+        <div  class="posiblewin" id="posiblewin">
+          <span>Possible Winning</span><span class='bg' id="pwin">0.00</span>
+        </div>
+      </div>
+    </div>
+    
+
+    
+    <div class="play-btn">
+      {% if user.is_authenticated %}
+      <img id="play" class="" src="/static/images/play-btn.png" alt="">
+      {% else %}
+      <img id="play1" class="" src="/static/images/play-btn.png" alt="">
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    var addedclass="";
+    var flipResult="";
+    var result="";
+    var amount="";
+    var stake="";
+    var run=0;
+    $('#btn-one').click(function(event) {
+      if(run==0)
+      {
+
+       stake="1";
+       $('#btn-one').addClass('active');
+       $('#btn-two').removeClass('active');
+     }
+   });
+
+    $('#btn-two').click(function(event) {
+      if(run==0)
+      {
+
+       stake="2";
+       $('#btn-one').removeClass('active');
+       $('#btn-two').addClass('active');
+
+     }
+     else
+     {
+
+     }
+   });
+
+
+    $('#play1').on('click', function(){
+      //alert('Refresh your browser');
+      //location.reload();
+      $('#error').html("login first!!")
+      $('#error').addClass("alert alert-danger")
+    });
+    $('#play').on('click', function(){
+      run=0;
+
+      $('#btn-one').css('background', '#123');
+      $('#btn-two').css('background', '#123');
+      var amount=$('#onetwo_amount').val();
+      if(stake=="" )
+      {
+        alert('choose your point (One-Two)');
+        run=0;
+      }
+      else
+      {
+        if(amount<=0)
+        {
+          alert('Enter Stake amount');
+          run=0;
+        }
+        else
+        {
+          $('.ludo_gif').css('display','block')
+          $('.ludo_png').css('display','none')
+          $.ajax({
+            method: "POST",
+            url:'/game6/',
+            data : {
+             stake: stake,
+             amount: amount
+           },
+           success : function (data){
+            $('.ludo_gif').css('display','none')
+           $('#result').html(data.result) ;
+           $('#toss_value').html(data.toss_result);
+           $('#error').html(data.error)
+           //$('#error').addClass("alert alert-danger")
+           $('.coin').css('display','block');
+          
+           setTimeout(function(){
+            document.location.reload(true);
+           }, 5000);
+        },
+         error : function (data){
+          $('.ludo_gif').css('display','none')
+          $('.ludo_png').css('display','block')
+          alert('something went wrong , please play again')
+         },
+        }); 
+        }
+      }
+    });
+      $('#onetwo_amount').keyup(function(event) {
+      var rate=1.75;
+      var amount=$('#onetwo_amount').val();
+      var returna=amount*rate;
+      var returna=returna.toFixed(1); 
+      $('#pwin').html(returna);
+    });
+  });
+
+
+</script>
+</body>
+
+
+</html>

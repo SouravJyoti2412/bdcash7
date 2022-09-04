@@ -1,0 +1,609 @@
+<!-- header  -->
+{% include 'homepage_header.html' %}
+
+        
+
+<div class="">
+    <section class="callaction ">
+        <div class="content-wrap p-0 ">
+            <div class="container  p-0 ">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class=" bhoechie-tab-container">
+                            <div class=" bhoechie-tab-menu">
+                                <ul class="list-group tabMenu">
+                                    <li>
+                                        <a href="#games" class="list-group-item text-center list-item">Game name</a>
+                                    </li>
+                                   
+                                    <li>
+                                        <a href="#allDeposits" class="list-group-item text-center list-item">Deposits</a>
+                                    </li>
+                                    <li>
+                                        <a href="#allWithdrawals" class="list-group-item text-center list-item">Withdrawals</a>
+                                    </li>
+                                    {% comment %} <li>
+                                        <a href="#u2ubt" class="list-group-item text-center list-item">Trancefer</a>
+                                    </li> {% endcomment %}
+                                    <li>
+                                        <a href="#transactionHistory" class="list-group-item text-center list-item transactionHistory">Transactions</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+<div id="games" class="bhoechie-tab">
+	<div class="bhoechie-tab-content ">
+		<div class="">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="tile">
+						<div class="tile-body">
+							<div class="table-responsive">
+								<div id="betingTable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+									<div class="row">
+										<div class="col-sm-12 col-lg-12">
+											<table class="table table-hover table-bordered dataTable no-footer" id="betingTable" role="grid" style="">
+												<thead>
+													<tr role="row">
+														<th style="font-size: 12px;">game name</th>
+														<th style="font-size: 12px;">Date & Time</th>
+														<th style="font-size: 12px;">Stake</th>
+														<th style="font-size: 12px;">Luck Stake</th>
+														<th style="font-size: 12px;">Amount</th>
+														<th style="font-size: 12px;">Rate</th>
+														<th style="font-size: 12px;">Return Amount(Win)</th>
+														<th style="font-size: 12px;">Win/Lose</th>
+													</tr>
+												</thead>
+												<tbody>
+                          {% for i in game_statement %}
+                          <tr role="row">                          
+                          <td>{{i.game_name}}</td>
+                          <td>{{i.playing_time}}</td>
+                          <td>{{i.stake}}</td>
+                          <td>{{i.Luck_stake}}</td>
+                          <td>{{i.Amount}}</td>
+                          <td>{{i.Rate}}</td>
+                          <td>{{i.Return_Amount}}</td>
+                          <td>{{i.Win_Lose}}</td>
+                          </tr>
+                          {% endfor %}
+											 </tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<div id="allDeposits" class=" bhoechie-tab hide">
+
+	<div class="bhoechie-tab-content ">
+		<div class="">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="table-responsive">
+						<div id="depositTable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+							<div class="row">
+								<div class="col-sm-12">
+									<table class="table table-hover table-bordered dataTable no-footer" id="depositTable" role="grid" aria-describedby="depositTable_info" style="">
+										<thead>
+											<tr role="row">
+												<th style="font-size: 12px;">SN</th>
+												<th style="font-size: 12px;">From</th>
+												<th style="font-size: 12px;">To</th>
+												<th style="font-size: 12px;">Amount</th>
+												<th style="font-size: 12px;">TransacID</th>
+												<th style="font-size: 12px;">Through</th>
+												<th style="font-size: 12px;">Status</th>
+												{% comment %} <th style="width:;">Note</th> {% endcomment %}
+												<th style="font-size: 12px;">Requested At</th>
+												<th style="font-size: 12px;">Accept/Cancel At</th>
+                      </tr>
+											</thead>
+											<tbody>
+                        {% for i in deposite_statement %}
+                        <tr role="row">
+                          <td>{{ forloop.counter }}</td>
+                          <td>{{i.customer_name}}</td>
+                          <td>admin</td>
+                          <td>{{i.amount }}</td>
+                          <td>{{i.transaction_id }}</td>
+                          <td>{{i.admin_account}}</td>
+                          <td>{% if i.is_deposited is True %} deposited {% else %}Not Deposited{% endif %}</td>
+                          <td>{{i.request_at}}</td>
+                          <td>{% if i.is_accpted is True %} Request accepted {% else %} Request Not Accpeted {% endif %}</td>
+                          
+                          
+                        </tr>
+                        {% endfor %}
+										</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="allWithdrawals" class="bhoechie-tab hide">
+		<div class="bhoechie-tab-content ">
+			<div class="">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="table-responsive">
+							<div id="withdrawalTable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+								<div class="row">
+									<div class="col-sm-12">
+										<table class="table table-bordered table-hover dataTable no-footer" id="withdrawalTable" role="grid" style="">
+											<thead>
+												<tr role="row">
+													<th style="width: 40px">SN</th>
+                          <th style="width: 40px">To</th>
+													<th style="width: 40px">account number</th>
+
+													<th style="width: 40px">Amount</th>
+													<th style="width: 40px">Through</th>
+													<th style="width: 40px">payment Status</th>
+													{% comment %} <th style="width: 40px">Note</th> {% endcomment %}
+													<th style="width: 40px">Requested At</th>
+													<th style="width: 40px">Payment status</th>
+													{% comment %} <th style="width: 40px">Cancel</th> {% endcomment %}
+												</tr>
+											</thead>
+											<tbody>
+                        {% for i in widthdrawal_statement %}
+                        <tr role ="row">
+                          <td>{{forloop.counter}}</td>
+                          <td>{{i.username}}</td>
+                          <td>{{i.account_holder}}</td>
+                          <td>{{i.amount}}</td>
+                          <td>{{i.method}} {{i.type}}</td>
+                          <td>{% if i.is_withdrawl is True %}withdrawal {% else %} Not withdrawal  {% endif %}</td>
+                          <td>{{i.request_at}}</td>
+                          <td>{% if i.is_accpted is True %} request accepted {% else %} Not Accepted {% endif %}</td>
+                        </tr>
+                        {% endfor %}
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% comment %} <div id="u2ubt" class="bhoechie-tab hide">
+		<div class="bhoechie-tab-content ">
+			<div class="">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="table-responsive">
+							<div id="withdrawalTable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+								<div class="row">
+									<div class="col-sm-12">
+										<table class="table table-bordered table-hover dataTable no-footer" id="withdrawalTable" role="grid" style="">
+											<thead>
+												<tr role="row">
+													<th style="width: 40px">SN</th>
+													<th style="width: 40px">To</th>
+													<th style="width: 40px">Amount</th>
+													<th style="width: 40px">Date</th>
+												</tr>
+											</thead>
+											<tbody>
+																							</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> {% endcomment %}
+
+
+	
+	<div id="transactionHistory" class="bhoechie-tab hide">
+		<div class="bhoechie-tab-content ">
+			<div class="">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="tile">
+							<div class="tile-body">
+								<div class="user table-responsive">
+									<table class="table table-hover table-bordered" id="transaction">
+										<thead>
+											<tr>
+												<th>Date & Time</th>
+												<th colspan="2">Description</th>
+												<th>Notes</th>
+												<th>Debit (Out)</th>
+												<th>Credit (In)</th>
+												<th>Balance</th>
+											</tr>
+										</thead>
+										<tbody>
+																						</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+
+
+
+ <!-- deposite model  -->
+{% include 'deposite.html' %}
+<!-- deposite model end  -->
+
+
+  <!-- Request Withdraw Modal -->
+  <div id="requestWithdrawModal" class="modal fade" role="dialog" >
+    <div class="modal-dialog  ">
+      <div class="modal-content">
+        <div class="modal-header m-head mh-color" style="  color:#fff !important;">
+          <button onClick="window.location.reload();" type="button" class="close" data-dismiss="modal" style="color: #ffffff">×</button>
+          <h4 class="modal-title" style="color: #D2D2D2" id="requestWithdrawModalLabel"> <img style="width: 85px;height: 32px;margin-left: 10px;" src="images/logo.png"> &nbsp;Request a withdraw</h4>
+        </div>
+        <form action="" method="post">
+          <div class="modal-body" style="background:url('./images/reg-bg.jpg')no-repeat bottom center !important; padding: 2% !important">
+            <div role="form" class="register-form">
+             <div id="status_data1">
+             </div>
+             <hr class="colorgraph">
+             <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <label style="text-align: left;width: 100%;">Method<span style="color:#DD4F43;">*</span></label>
+                  <select class="form-control" name="withdraw_method" id="withdraw_method">
+                    <option value="">Select Method</option>
+                    <option value="Bkash">BKASH</option> 
+                    <option value="Nagod">NAGOD</option> 
+
+                  </select>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <label style="text-align: left;width: 100%;">Type <span style="color:#DD4F43;">*</span></label>
+                  <select placeholder="Account Type" class="form-control" id="withdraw_account_type" name="account_type">
+                    <option value="">Account Type</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Agent">Agent</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <label style="text-align: left;width: 100%;">Amount <span style="color:#DD4F43;">*</span></label>
+                  <input type="text" class="form-control bg-light-gray" id="req-withdraw-amount"
+                  name="withdraw_amount"  placeholder="Amount" tabindex="1">
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <label style="text-align: left;width: 100%;"> To <span style="color:#DD4F43;">*</span></label>
+                <div class="form-group">
+                  <input type="text" id="req-withdraw-to"
+                  name="withdraw_to" class="form-control input-lg" placeholder=" To " tabindex="1">
+                </div>
+              </div>
+            </div>
+            <hr class="colorgraph">
+            <div class="row">
+              <div class="col-lg-3"></div>
+              <div class="col-lg-6" id="buttondata"><a  style="color:#fff;" onclick="withdrawPost();" value="" class="btn btn-block btn-lg mh-color" tabindex="7"> Submit </a></div>
+              <div class="col-lg-6 hidden" id="button_data_loading"><a  style="color:#fff;cursor: no-drop;" value="" class="btn btn-block btn-lg mh-color" tabindex="7"> Submit </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Request Withdraw Modal -->
+
+  <div id="change-password-modal" class="modal fade" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog  ">
+
+      <div class="modal-content">
+        <div class="modal-header m-head mh-color">
+          <button type="button" onClick="window.location.reload();" class="close" data-dismiss="modal" style="color: #ffffff">×</button>
+          <h4 class="modal-title" style="color: #D2D2D2"> <img style="width: 85px;height: 32px;margin-left: 10px;" src="images/logo.png"> &nbsp; Change Password</h4>
+        </div>
+        <form action="" method="post">
+          <div class="modal-body" style="background:url('./images/reg-bg.jpg')no-repeat bottom center !important; padding: 2% !important">
+            <div class="">
+              <div role="form" class="register-form">
+
+
+                <hr class="colorgraph">
+                <div class="form-group">
+                  <label style="text-align: left;width: 100%;">Current Password <span style="color:#DD4F43;">*</span></label>
+                  <input type="password" name="current_password" id="user-current-password" class="form-control input-lg" placeholder="Current Password " tabindex="3" required="">
+                </div>
+                <div class="form-group">
+                  <label style="text-align: left;width: 100%;">New Password <span style="color:#DD4F43;">*</span></label>
+                  <input type="password" name="new_password" id="user-new-password" class="form-control input-lg" placeholder="New Password" tabindex="3" minlength="6" required="">
+                </div>
+                <div class="form-group">
+                  <label style="text-align: left;width: 100%;">Confirm Password <span style="color:#DD4F43;">*</span></label>
+                  <input type="password" name="confirm_password" id="user-cnf-password" class="form-control input-lg" placeholder="Confirm Password" tabindex="3" required="" minlength="6">
+                </div>
+                <hr class="colorgraph">
+                <div class="row">
+                  <div class="col-lg-3"></div>
+                  <div class="col-lg-6"><button style="background: #126e51 !important;" type="submit" name="form3" class="btn btn-block btn-lg mh-color" tabindex="7" style="color:#fff;"> Submit </button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="balancetrnsfr" class="modal fade" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog  ">
+
+      <div class="modal-content">
+        <div class="modal-header m-head mh-color">
+          <button type="button" onClick="window.location.reload();" class="close" data-dismiss="modal" style="color: #ffffff">×</button>
+          <h4 class="modal-title" style="color: #D2D2D2"> <img style="width: 85px;height: 32px;margin-left: 10px;" src="images/logo.png"> &nbsp; user to user balance trancfer</h4>
+        </div>
+        <form action="" method="post">
+          <div class="modal-body" style="background:url('./images/reg-bg.jpg')no-repeat bottom center !important; padding: 2% !important">
+            <div class="">
+              <div role="form" class="register-form">
+
+                <div id="wstatues">
+                </div>
+                <hr class="colorgraph">
+                <div class="form-group">
+                  <label style="text-align: left;width: 100%;">User name <span style="color:#DD4F43;">*</span></label>
+                  <input type="text" name="userid" id="username" class="form-control input-lg" placeholder="user id " tabindex="3" required="">
+                </div>
+                <div class="form-group">
+                  <label style="text-align: left;width: 100%;">Amount <span style="color:#DD4F43;">*</span></label>
+                  <input type="text" name="amount" id="amount" class="form-control input-lg" placeholder="Amount" tabindex="3" minlength="6" required="">
+                </div>
+                <div class="form-group">
+                  <label style="text-align: left;width: 100%;">Confirm Password <span style="color:#DD4F43;">*</span></label>
+                  <input type="password" name="cpassword" id="cpassword" class="form-control input-lg" placeholder="Confirm Password" tabindex="3" required="" minlength="6">
+                </div>
+                <hr class="colorgraph">
+                <div class="row">
+                  <div class="col-lg-3"></div>
+                    <div class="col-lg-6" id="wstatues1">
+                      <a style="color:#fff;" onclick="u2ubtPost();" value="" class="btn btn-block btn-lg mh-color" tabindex="7" type="button">Submit</a>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="modal fade" id="bet-sel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Bet Sell Confirmation</h4>
+      </div>
+      <div class="modal-body" style="background:url('./images/reg-bg.jpg')no-repeat bottom center !important;">
+        <p>Are you sure want to sell this bet ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <a class="btn btn-danger btn-ok">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="cancel-withrow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Cancel Withrow Confirmation</h4>
+      </div>
+      <div class="modal-body" style="background:url('./images/reg-bg.jpg')no-repeat bottom center !important;">
+        <p>Are you sure want to cancel this withrow ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <a class="btn btn-danger btn-ok">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="clubwidthdraw" class="modal fade" role="dialog" >
+  <div class="modal-dialog  ">
+    <div class="modal-content">
+      <div class="modal-header m-head mh-color" style="  color:#fff !important;">
+        <button onClick="window.location.reload();" type="button" class="close" data-dismiss="modal" style="color: #ffffff">×</button>
+        <h4 class="modal-title" style="color: #D2D2D2" id="clubwidthdraw"> <img style="width: 85px;height: 32px;margin-left: 10px;" src="images/logo.png"> &nbsp;Request a withdraw</h4>
+      </div>
+      <form action="" method="post">
+        <div class="modal-body" style="padding: 2% !important">
+          <div role="form" class="register-form">
+           <div id="status_data1">
+           </div>
+           <hr class="colorgraph">
+           <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <label style="text-align: left;width: 100%;">Method<span style="color:#DD4F43;">*</span></label>
+                <select class="form-control" name="withdraw_method" id="withdraw_method">
+                    <option value="">Select Method</option>
+                    <option value="Bkash">BKASH</option> 
+                </select>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <label style="text-align: left;width: 100%;">Type <span style="color:#DD4F43;">*</span></label>
+                <select placeholder="Account Type" class="form-control" id="withdraw_account_type" name="account_type">
+                  <option value="">Account Type</option>
+                  <option value="Personal">Personal</option>
+                  <option value="Agent">Agent</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <label style="text-align: left;width: 100%;">Amount <span style="color:#DD4F43;">*</span></label>
+                <input type="text" class="form-control bg-light-gray" id="req-withdraw-amount"
+                name="withdraw_amount"  placeholder="Amount" tabindex="1">
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <label style="text-align: left;width: 100%;"> To <span style="color:#DD4F43;">*</span></label>
+              <div class="form-group">
+                <input type="text" id="req-withdraw-to"
+                name="withdraw_to" class="form-control input-lg" placeholder=" To " tabindex="1">
+              </div>
+            </div>
+          </div>
+          <hr class="colorgraph">
+          <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6"><a  style="color:#fff;" onclick="cwithdrawPost();" value="" class="btn btn-block btn-lg mh-color" tabindex="7"> Submit </a></div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+<div id="club-change-password" class="modal fade" role="dialog" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog  ">
+
+    <div class="modal-content">
+      <div class="modal-header m-head mh-color">
+        <button type="button" onClick="window.location.reload();" class="close" data-dismiss="modal" style="color: #ffffff">×</button>
+        <h4 class="modal-title" style="color: #D2D2D2"> <img style="width: 85px;height: 32px;margin-left: 10px;" src="images/logo.png"> &nbsp; Change Password</h4>
+      </div>
+      <form action="" method="post">
+        <div class="modal-body" style="padding: 2% !important">
+          <div class="">
+            <div role="form" class="register-form">
+
+
+              <hr class="colorgraph">
+              <div class="form-group">
+                <label style="text-align: left;width: 100%;">Current Password <span style="color:#DD4F43;">*</span></label>
+                <input type="password" name="current_password" id="user-current-password" class="form-control input-lg" placeholder="Current Password " tabindex="3" required="">
+              </div>
+              <div class="form-group">
+                <label style="text-align: left;width: 100%;">New Password <span style="color:#DD4F43;">*</span></label>
+                <input type="password" name="new_password" id="user-new-password" class="form-control input-lg" placeholder="New Password" tabindex="3" minlength="6" required="">
+              </div>
+              <div class="form-group">
+                <label style="text-align: left;width: 100%;">Confirm Password <span style="color:#DD4F43;">*</span></label>
+                <input type="password" name="confirm_password" id="user-cnf-password" class="form-control input-lg" placeholder="Confirm Password" tabindex="3" required="" minlength="6">
+              </div>
+              <hr class="colorgraph">
+              <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6"><button style="background: #126e51 !important;color:#fff !important;" type="submit" name="formclub" class="btn btn-block btn-lg mh-color" tabindex="7" > Submit </button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<footer class="footer-basic-centered ">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          {% for i in logo %}
+            <a class="" href="/"><img style="width: 150px;height: 60px;margin-left: 10px;" src="/media/{{i.logo}}"></a>
+            {% endfor %}
+            <p style="font-size: 15px;color: #dcdcdc;" class="footer-company-name">Designer By <a href="index.html" style="color:#000">Bdcash7.com</a> &copy; 2022 All Right Reserved.</p>
+        </div>
+        <div class="col-lg-3">
+                      <a class="" href="#">
+                          <img style="width: 150px;height: 60px;margin-left: 10px;" src="/static/images/Payment.png">
+                      </a>
+                     
+                  </div>
+        <div class="col-lg-3">
+          <span class="userAlert" style="color:#fff;"> Caution! We strongly discourage to use this site who are not 18+ and also site administrator is not liable to any kind of issues created by user.</span>
+       </div>
+     </div>
+   </div>
+  </footer>
+</div>
+
+<script src="/static/js/jquery.min_1f700.js?v=1.0.1"></script>
+<script src="/static/js/bootstrap.minf700.js?v=1.0.1"></script>
+{% comment %} <script src="/static/js/validation/placeBet.js"></script>
+<script src="/static/js/validation/validated.js"></script>
+<script src="/static/js/validation/siteRefresh.js"></script> {% endcomment %}
+{% comment %} <script src="/static/js/validation/deposit_and_withdraw.js"></script> {% endcomment %}
+{% comment %} <script src="/static/assets/js/vendor/jquery-2.2.4.minf700.js?v=1.0.1"></script>
+<script src="/static/assets/js/pusher.minf700.js?v=1.0.1"></script>
+<script src="/static/assets/js/pluginsf700.js?v=1.0.1"></script> {% endcomment %}
+<script src="/static/assets/js/jquery.datatable.minf700.js?v=1.0.1"></script>
+<script src="/static/assets/js/datatable.bootstrap.minf700.js?v=1.0.1"></script>
+<script src="/static/assets/js/owl.carousel.minf700.js?v=1.0.1"></script>
+
+
+  <script>
+    $('.list-item').click(function () {
+      $('.list-item').removeClass('active');
+      $(this).addClass('active');
+      $('.bhoechie-tab').addClass('hide');
+      $($(this).attr('href')).removeClass('hide');
+    });
+  </script>
+</body>
+  </html>
